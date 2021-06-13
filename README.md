@@ -1,3 +1,15 @@
+### HRMS Diagram
+
+![HRMS Diagram page](https://github.com/Murat-Selim/HRMS-Frontend/blob/master/public/HRMS%20Diagram.png?raw=true)
+
+### Ana Sayfa
+
+![HRMS Home Page](https://res.cloudinary.com/muratselim/image/upload/v1623588854/HRMS_Ana_sayfa_gutida.png)
+
+### Is Ilanlari
+
+![HRMS Work Page](https://res.cloudinary.com/muratselim/image/upload/v1623588862/HRMS_Is_ilanlari_kw4aw4.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
