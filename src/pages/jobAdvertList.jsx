@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Menu, Table } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
+import { Button, Icon, Menu, Table } from "semantic-ui-react";
 import JobAdvertService from "../services/jobAdvertService";
 
 export default function JobAdvertList() {
@@ -15,11 +16,12 @@ export default function JobAdvertList() {
       <Table celled>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Sirket</Table.HeaderCell>
+            <Table.HeaderCell>Şirket</Table.HeaderCell>
             <Table.HeaderCell>Pozisyon</Table.HeaderCell>
-            <Table.HeaderCell>Olusturma tarihi</Table.HeaderCell>
-            <Table.HeaderCell>Kapanis tarihi</Table.HeaderCell>
-            <Table.HeaderCell>Acik Pozisyon sayisi</Table.HeaderCell>
+            <Table.HeaderCell>Oluşturma tarihi</Table.HeaderCell>
+            <Table.HeaderCell>Kapanış tarihi</Table.HeaderCell>
+            <Table.HeaderCell>Açık Pozisyon sayısı</Table.HeaderCell>
+            <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -31,6 +33,12 @@ export default function JobAdvertList() {
               <Table.Cell>{jobAdvert.createdDate}</Table.Cell>
               <Table.Cell>{jobAdvert.applicationDeadline}</Table.Cell>
               <Table.Cell>{jobAdvert.numberOfOpenPosition}</Table.Cell>
+              <Table.Cell>
+                <Button as={NavLink} to={`/jobAdverts/${jobAdvert.id}`} basic color='green'>
+                  Detaylar
+                </Button>
+              </Table.Cell>
+              
               </Table.Row>
           ))}
         </Table.Body>

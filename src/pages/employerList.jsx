@@ -18,6 +18,7 @@ export default function EmployerList() {
             <Card.Content key={employer.id}>
               <Card.Header>{employer.companyName}</Card.Header>
               <Card.Meta>{employer.webAddress}</Card.Meta>
+              <Card.Meta>{employer.email}</Card.Meta>
               <Card.Description>
                 {employer.phoneNumber}
               </Card.Description>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Menu, Table } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 import JobPositionService from "../services/jobPositionService";
 
 export default function JobPositionList() {
@@ -10,44 +10,34 @@ export default function JobPositionList() {
     jobPositionService
       .getJobPositions()
       .then((result) => setJobPositions(result.data.data));
-  },[]);
+  }, []);
+
+  function handleChange(e) {
+    console.log(e.target.value);
+  }
+
+  let jobPositionOption = jobPositions.map((jobPosition) => ({
+    key: jobPosition.id,
+    text: jobPosition.jobTitle,
+    value: jobPosition.id,
+  }));
 
   return (
     <div>
-      <Table celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Is pozisyonu</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          {jobPositions.map((jobPosition) => (
-            <Table.Row key={jobPosition.id}>
-              <Table.Cell>{jobPosition.jobTitle}</Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-
-        <Table.Footer>
-          <Table.Row>
-            <Table.HeaderCell colSpan="3">
-              <Menu floated="right" pagination>
-                <Menu.Item as="a" icon>
-                  <Icon name="chevron left" />
-                </Menu.Item>
-                <Menu.Item as="a">1</Menu.Item>
-                <Menu.Item as="a">2</Menu.Item>
-                <Menu.Item as="a">3</Menu.Item>
-                <Menu.Item as="a">4</Menu.Item>
-                <Menu.Item as="a" icon>
-                  <Icon name="chevron right" />
-                </Menu.Item>
-              </Menu>
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Footer>
-      </Table>
+      <h4 style={{fontWeight:"bold", color:"teal"}}>Pozisyon</h4>
+        <Dropdown
+          search
+          clearable
+          icon="search"
+          iconPosition="left"
+          className="search"
+          placeholder="Pozisyon Seçiniz..."
+          fluid
+          selection
+          onChange={handleChange}
+          options={jobPositionOption}
+        />
+      
     </div>
   );
 }

@@ -17,20 +17,20 @@ export default function CandidateList() {
       <Table celled>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Email</Table.HeaderCell>
-            <Table.HeaderCell>Isim</Table.HeaderCell>
+            <Table.HeaderCell>İsim</Table.HeaderCell>
             <Table.HeaderCell>Soyisim</Table.HeaderCell>
+            <Table.HeaderCell>Email</Table.HeaderCell>
             <Table.HeaderCell>Kimlik No</Table.HeaderCell>
-            <Table.HeaderCell>Dogum tarihi</Table.HeaderCell>
+            <Table.HeaderCell>Doğum tarihi</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
           {candidates.map((candidate) => (
             <Table.Row key={candidate.id}>
-              <Table.Cell>{candidate.email}</Table.Cell>
               <Table.Cell>{candidate.firstName}</Table.Cell>
               <Table.Cell>{candidate.lastName}</Table.Cell>
+              <Table.Cell>{candidate.email}</Table.Cell>
               <Table.Cell>{candidate.identityNumber}</Table.Cell>
               <Table.Cell>{candidate.dateOfBirth}</Table.Cell>
               </Table.Row>

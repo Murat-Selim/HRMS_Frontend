@@ -6,8 +6,12 @@ export default class JobAdvertService{
         return axios.get("http://localhost:8080/api/jobAdverts/getall")
     }
 
-    createJobAdvert(jobAdvert){
-        return axios.post("http://localhost:8080/api/jobAdverts/add", jobAdvert)
+    getById(id){
+        return axios.get("http://localhost:8080/api/jobAdverts/getbyid?id="+id)
+    }
+
+    addJobAdvert(values){
+        return axios.post("http://localhost:8080/api/jobAdverts/add", values)
     }
     
 }
