@@ -77,7 +77,7 @@ export default function JobAdvertAdd() {
   };
 
   const validateSchema = Yup.object().shape({
-    createdDate: Yup.date().required("Zorunlu Alan"),
+    createdDate: Yup.date().required("Zorunlu Alan "),
     applicationDeadline: Yup.date().required("Zorunlu Alan"),
     numberOfOpenPosition: Yup.number().required("Zorunlu Alan"),
     jobDescription: Yup.string().required("Zorunlu Alan"),
