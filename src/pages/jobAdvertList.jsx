@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Menu, Table } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
+import { Button, Card } from "semantic-ui-react";
 import JobAdvertService from "../services/jobAdvertService";
 
 export default function JobAdvertList() {
@@ -12,48 +13,54 @@ export default function JobAdvertList() {
 
   return (
     <div>
-      <Table celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Sirket</Table.HeaderCell>
-            <Table.HeaderCell>Pozisyon</Table.HeaderCell>
-            <Table.HeaderCell>Olusturma tarihi</Table.HeaderCell>
-            <Table.HeaderCell>Kapanis tarihi</Table.HeaderCell>
-            <Table.HeaderCell>Acik Pozisyon sayisi</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+      
+      <Card.Group>
 
-        <Table.Body>
-          {jobAdverts.map((jobAdvert) => (
-            <Table.Row key={jobAdvert.id}>
-              <Table.Cell>{jobAdvert.employerCompanyName}</Table.Cell>
-              <Table.Cell>{jobAdvert.jobTitle}</Table.Cell>
-              <Table.Cell>{jobAdvert.createdDate}</Table.Cell>
-              <Table.Cell>{jobAdvert.applicationDeadline}</Table.Cell>
-              <Table.Cell>{jobAdvert.numberOfOpenPosition}</Table.Cell>
-              </Table.Row>
-          ))}
-        </Table.Body>
-
-        <Table.Footer>
-          <Table.Row>
-            <Table.HeaderCell colSpan="3">
-              <Menu floated="right" pagination>
-                <Menu.Item as="a" icon>
-                  <Icon name="chevron left" />
-                </Menu.Item>
-                <Menu.Item as="a">1</Menu.Item>
-                <Menu.Item as="a">2</Menu.Item>
-                <Menu.Item as="a">3</Menu.Item>
-                <Menu.Item as="a">4</Menu.Item>
-                <Menu.Item as="a" icon>
-                  <Icon name="chevron right" />
-                </Menu.Item>
-              </Menu>
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Footer>
-      </Table>
-    </div>
-  );
+      {jobAdverts.map((jobAdvert) => (
+      
+      <Card fluid color="blue" key={jobAdvert.id}>
+       
+        <Card.Content>
+          <Card.Header
+            style={{fontWeight: "bold", height: "30px", marginTop: "7px", color: "purple" }}
+            content={jobAdvert.employerCompanyName}
+          />
+          <hr/>
+          <div>
+            <Card.Description>
+              <h3>
+                <b>Pozisyon : </b> 
+                <strong>{jobAdvert.jobTitle}</strong>
+              </h3>
+            </Card.Description>
+            <Card.Description>
+              <div style={{ margin: "10px" }}>
+                <b> Açık Pozisyon : </b> {jobAdvert.numberOfOpenPosition}
+              </div>
+            </Card.Description>
+            <Card.Description>
+              <div style={{ margin: "10px" }}>
+                <b> Oluşturma Tarihi : </b> {jobAdvert.createdDate}
+              </div>
+            </Card.Description>
+            <Card.Description>
+              <b>Kapanış Tarihi : </b> {jobAdvert.applicationDeadline} 
+            </Card.Description>
+          </div>
+        </Card.Content>
+        <Card.Content extra>
+          <div className="ui two buttons">
+            <Button as={NavLink} to={`/jobAdverts/${jobAdvert.id}`} basic color="green">
+              Detaylar
+            </Button>
+            <Button basic color="red">
+              Favorilere Ekle
+            </Button>
+          </div>
+         </Card.Content>
+         </Card>
+        ))}
+      </Card.Group>
+  </div>
+ );
 }

@@ -10,7 +10,7 @@ export default function SignedIn({ signOut }) {
           spaces="right"
           src="https://img2.pngindir.com/20180426/bhe/kisspng-computer-icons-avatar-man-clip-art-5ae1dffd9b6241.8062271015247523816365.jpg"
         />
-        <Dropdown pointing="top left" text="Murat">
+        <Dropdown pointing="top left" text="Murat Selim">
           <Dropdown.Menu>
             <Dropdown.Item text="Bilgilerim" icon="info" />
             <Dropdown.Item onClick={signOut} text="Cikis yap" icon="sign-out" />
