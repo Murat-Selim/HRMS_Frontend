@@ -24,16 +24,13 @@ export default function Navi() {
           <Menu.Item icon="braille" name="HRMS" />
 
           <Menu.Item as={NavLink} to="/jobAdvertList" name="Ana Sayfa" icon="home" />
-          <Menu.Item as={NavLink} to="/jobAdvertList" name="Is Ilanlari" />
           <Menu.Item name="Cvler" as={NavLink} to="/cvList" />
 
           
           
           <Menu.Menu position="right">
           <Menu.Item>
-            <Button basic inverted as={NavLink} to="/jobAdvertAdd">
-              İş ilani ekle
-            </Button>
+            <Button basic inverted as={NavLink} to="/jobAdvertAdd" content="İş ilani Yayınla" icon="add"/>
           </Menu.Item>
             {isAuthenticated ? (
               <SignedIn signOut={handleSignOut} />

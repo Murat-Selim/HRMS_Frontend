@@ -8,7 +8,10 @@ import WorkTimeList from "../pages/WorkTimeList";
 export default function SideBar() {
   return (
     <div>
-      <Card>
+      <Card fluid color="green">
+          <h2 style={{fontWeight:"bold", color:"green"}}>Filtreler</h2>
+      </Card>
+      <Card fluid color="teal">
         <Card.Content>
           <CityList />
           <br />
@@ -18,7 +21,7 @@ export default function SideBar() {
           <br/>
           <WorkTimeList />
           <br/>
-          <Button color="blue">Uygula</Button>
+          <Button basic color="blue">İŞ BUL</Button>
         </Card.Content>
       </Card>
     </div>

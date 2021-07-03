@@ -24,14 +24,14 @@ export default function WorkPlaceList() {
 
   return (
    <div>
-      <h4 style={{fontWeight:"bold", color:"teal"}}>İş Yeri</h4>
+      <h4 style={{fontWeight:"bold", color:"teal"}}>Çalışma Yeri</h4>
       <Dropdown
         search
         clearable
         icon="search"
         iconPosition="left"
         className="search"
-        placeholder="İş Yeri Seçiniz..."
+        placeholder="Çalışma Yeri Seçiniz..."
         fluid
         selection
         options={workPlaceOption}

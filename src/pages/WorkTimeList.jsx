@@ -24,14 +24,14 @@ export default function WorkTimeList() {
 
   return (
     <div>
-      <h4 style={{ fontWeight: "bold", color: "teal" }}>İş Zamanı</h4>
+      <h4 style={{ fontWeight: "bold", color: "teal" }}>Çalışma Zamanı</h4>
       <Dropdown
         search
         clearable
         icon="search"
         iconPosition="left"
         className="search"
-        placeholder="İş Zamanı Seçiniz..."
+        placeholder="Çalışma Zamanı Seçiniz..."
         fluid
         selection
         options={workTimeOption}

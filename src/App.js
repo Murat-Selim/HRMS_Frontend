@@ -3,7 +3,8 @@ import Dashboard from './layouts/Dashboard';
 import 'semantic-ui-css/semantic.min.css';
 import Navi from './layouts/Navbar/Navi.jsx';
 import { Container } from 'semantic-ui-react';
-import Footer from './layouts/Footer'
+import Footer from './layouts/Footer.jsx';
+
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Container className="main">
         <Dashboard/> 
       </Container>
-      <Footer/>
+       <Footer/>
     </div>
   );
 }

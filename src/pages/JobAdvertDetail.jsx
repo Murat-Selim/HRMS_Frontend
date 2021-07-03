@@ -24,7 +24,7 @@ export default function JobAdvertDetail() {
             content={jobAdvert?.employer?.companyName}
           />
           <hr/>
-          <div>
+          <div style={{textAlign:"left"}}>
             <Card.Description>
               <h3>
                 <b>Pozisyon : </b> 
@@ -50,12 +50,9 @@ export default function JobAdvertDetail() {
           </div>
         </Card.Content>
         <Card.Content extra>
-          <div className="ui two buttons">
+          <div className="ui buttons">
             <Button basic color="green">
               Başvur
-            </Button>
-            <Button basic color="red">
-              Favorilere Ekle
             </Button>
           </div>
         </Card.Content>
