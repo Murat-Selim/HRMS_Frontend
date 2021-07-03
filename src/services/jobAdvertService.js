@@ -13,5 +13,9 @@ export default class JobAdvertService{
     addJobAdvert(values){
         return axios.post("http://localhost:8080/api/jobAdverts/add", values)
     }
+
+    changeActive(id){
+        return axios.put("http://localhost:8080/api/jobAdverts/changeActive", id)
+    }
     
 }
