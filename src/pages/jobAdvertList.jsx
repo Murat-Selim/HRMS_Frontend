@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Button, Card } from "semantic-ui-react";
 import JobAdvertService from "../services/jobAdvertService";
+import {addToFavorite} from "../store/actions/favoriteActions";
+import "react-toastify/dist/ReactToastify.min.css";
 
 export default function JobAdvertList() {
+  
+  const dispatch = useDispatch();
+
   const [jobAdverts, setJobAdverts] = useState([]);
 
   useEffect(() => {
     let jobAdverts = new JobAdvertService();
-    jobAdverts.getJobAdverts().then((result) => setJobAdverts(result.data.data));
+    jobAdverts.getByIsActive().then((result) => setJobAdverts(result.data.data));
   }, []);
+
+  const handleAddToFavorite = (jobAdvert) => {
+     dispatch(addToFavorite(jobAdvert))
+     toast.success(`${jobAdvert.jobTitle} favorilere eklendi!`)
+  }
 
   return (
     <div>
@@ -53,7 +65,7 @@ export default function JobAdvertList() {
             <Button as={NavLink} to={`/jobAdverts/${jobAdvert.id}`} basic color="green">
               Detaylar
             </Button>
-            <Button basic color="red">
+            <Button basic color="red" onClick={() => handleAddToFavorite(jobAdvert)}>
               Favorilere Ekle
             </Button>
           </div>
