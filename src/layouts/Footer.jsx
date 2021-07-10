@@ -4,7 +4,7 @@ import { Icon, Segment } from "semantic-ui-react";
 export default function Footer() {
   return (
     <div className="footer">
-      <Segment textAlign="center" inverted color="black">
+      <Segment textAlign="center" vertical inverted color="black">
         <Icon name="envelope outline" />
         murat@gmail.com &nbsp;&nbsp;&nbsp;
         <Icon name="phone" />

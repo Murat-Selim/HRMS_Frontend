@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Segment } from "semantic-ui-react";
 import CityService from "../services/cityService";
 
 export default function CityList() {
@@ -22,8 +22,10 @@ export default function CityList() {
 
   return (
     <div>
+      <Segment>
       <h4 style={{fontWeight:"bold", color:"teal"}}>Şehir</h4>
       <Dropdown
+        multiple
         search
         clearable
         icon="search"
@@ -35,6 +37,7 @@ export default function CityList() {
         options={cityOption}
         onChange={handleChange}
       />
+      </Segment>
     </div>
   );
 }

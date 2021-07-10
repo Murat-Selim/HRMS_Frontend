@@ -6,8 +6,8 @@ export default class JobAdvertService{
         return axios.get("http://localhost:8080/api/jobAdverts/getall")
     }
 
-    getByIsActive(){
-        return axios.get("http://localhost:8080/api/jobAdverts/getAllByIsActive")
+    getByIsActive(pageNo, pageSize){
+        return axios.get(`http://localhost:8080/api/jobAdverts/getAllByIsActive?pageNo=${pageNo}&pageSize=${pageSize}`)
     }
 
     getByNotActive(){

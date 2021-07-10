@@ -96,13 +96,9 @@ export default function JobAdvertAdd() {
       .addJobAdvert(values)
       .then((result) => {
       console.log(result.data.message);
-      toast.success("İş ilanı başarıyla eklendi");
-      history.push("/jobAdvertList");
+      toast.success("İş ilanı başarıyla eklendi, Personelin onayının ardından yayınlanacaktır.");
+      history.push("/jobAdvertWaitingConfirm");
       })
-      
-    // setTimeout(() => {
-    //   alert(JSON.stringify(values, null, 2));
-    // }, 400);
   };
 
   const handleOnChange = (prop, value, fieldName) => {

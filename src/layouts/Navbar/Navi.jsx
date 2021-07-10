@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Navi() {
 
-  const favorites = useSelector(state => state.favorite)
+  const favorites = useSelector(state => state.favorite.favorites);
 
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const history = useHistory();
@@ -34,9 +34,9 @@ export default function Navi() {
           
           
           <Menu.Menu position="right">
-          {favorites.length>0&&<FavoriteSummary/>}
+          {favorites.length>0&&<FavoriteSummary/>} 
           <Menu.Item>
-            <Button basic inverted as={NavLink} to="/jobAdvertAdd" content="İş ilani Yayınla" icon="add"/>
+            <Button color="violet" as={NavLink} to="/jobAdvertAdd" content="İş ilani Yayınla" icon="add"/>
           </Menu.Item>
             {isAuthenticated ? (
               <SignedIn signOut={handleSignOut} />

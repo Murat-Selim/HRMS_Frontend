@@ -4,23 +4,20 @@ import { Button, Table } from "semantic-ui-react";
 import JobAdvertService from "../services/jobAdvertService";
 
 export default function JobAdvertWaitingConfirm() {
-  const [JobAdverts, setJobAdverts] = useState([]);
+  
+  const [jobAdverts, setJobAdverts] = useState([]);
 
   useEffect(() => {
-    let JobAdverts = new JobAdvertService();
-    JobAdverts.getByNotActive().then((result) => setJobAdverts(result.data.data));
+    let jobAdverts = new JobAdvertService();
+    jobAdverts.getByNotActive().then((result) => setJobAdverts(result.data.data));
   }, []);
 
-  const handleIsActive = () => {
+  const handleIsActive = (id) => {
       let changeActive = new JobAdvertService();
-      changeActive.updateChangeActive();
+      changeActive.updateChangeActive(id)
+      const removeList = jobAdverts.filter((jobAdvert)=>jobAdvert.id !== id);
+      setJobAdverts(removeList);
       toast.success("İş ilanı onaylandı!")
-  }
-
-  const handleNotActive = () => {
-    let changeActive = new JobAdvertService();
-    changeActive.updateChangeFalse();
-    toast.error("İş ilanı onaylanmadı!")
   }
  
   return (
@@ -33,24 +30,20 @@ export default function JobAdvertWaitingConfirm() {
             <Table.HeaderCell>Açık Pozisyon</Table.HeaderCell>
             <Table.HeaderCell>Oluşturma Tarihi</Table.HeaderCell>
             <Table.HeaderCell>Kapanış Tarihi</Table.HeaderCell>
-            <Table.HeaderCell>Onayla</Table.HeaderCell>
-            <Table.HeaderCell>Vazgeç</Table.HeaderCell>
+            <Table.HeaderCell>Onay Durumu</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
-          {JobAdverts.map((JobAdvert) => (
-            <Table.Row key={JobAdvert.id}>
-              <Table.Cell>{JobAdvert.employerCompanyName}</Table.Cell>
-              <Table.Cell>{JobAdvert.jobTitle}</Table.Cell>
-              <Table.Cell>{JobAdvert.numberOfOpenPosition}</Table.Cell>
-              <Table.Cell>{JobAdvert.createdDate}</Table.Cell>
-              <Table.Cell>{JobAdvert.applicationDeadline}</Table.Cell>
+          {jobAdverts.map((jobAdvert) => (
+            <Table.Row key={jobAdvert.id}>
+              <Table.Cell>{jobAdvert.employerCompanyName}</Table.Cell>
+              <Table.Cell>{jobAdvert.jobTitle}</Table.Cell>
+              <Table.Cell>{jobAdvert.numberOfOpenPosition}</Table.Cell>
+              <Table.Cell>{jobAdvert.createdDate}</Table.Cell>
+              <Table.Cell>{jobAdvert.applicationDeadline}</Table.Cell>
               <Table.Cell>
-                <Button color="green" onClick={() => handleIsActive()}>Onayla</Button>
-              </Table.Cell>
-              <Table.Cell>
-                <Button color="red" onClick={() => handleNotActive()}>Vazgeç</Button>
+                <Button color="red" onClick={() => handleIsActive(jobAdvert.id)}>Onay Bekleyen</Button>
               </Table.Cell>
             </Table.Row>
           ))}
