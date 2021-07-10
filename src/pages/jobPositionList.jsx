@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Segment } from "semantic-ui-react";
 import JobPositionService from "../services/jobPositionService";
 
 export default function JobPositionList() {
@@ -24,8 +24,10 @@ export default function JobPositionList() {
 
   return (
     <div>
+      <Segment>
       <h4 style={{fontWeight:"bold", color:"teal"}}>Pozisyon</h4>
         <Dropdown
+          multiple
           search
           clearable
           icon="search"
@@ -37,7 +39,7 @@ export default function JobPositionList() {
           onChange={handleChange}
           options={jobPositionOption}
         />
-      
+      </Segment>
     </div>
   );
 }

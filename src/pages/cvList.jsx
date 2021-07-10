@@ -24,7 +24,7 @@ export default function CvList() {
                   marginTop: "7px",
                   color: "purple",
                 }}
-                content={`${cv.candidateFirstName}  ${cv.candidateLastName}`}
+                content={`${cv.candidateFirstName} ${cv.candidateLastName}`}
               />
               <hr />
               <Image

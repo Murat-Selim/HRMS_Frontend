@@ -15,8 +15,8 @@ export default class FavoriteService{
       return axios.get("http://localhost:8080/api/favoriteJobAdverts/getById?id="+id)
     }
     
-    add(values) {
-       return axios.post("http://localhost:8080/api/favoriteJobAdverts/add", values);
+    add(favoriteJobAdvert) {
+       return axios.post("http://localhost:8080/api/favoriteJobAdverts/add", favoriteJobAdvert);
     }
   
     delete(jobAdvertId) {

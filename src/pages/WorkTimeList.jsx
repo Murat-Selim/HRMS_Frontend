@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Checkbox, Segment } from "semantic-ui-react";
 import WorkTimeService from "../services/workTimeService";
 
 export default function WorkTimeList() {
@@ -16,27 +16,19 @@ export default function WorkTimeList() {
     console.log(e.target.value);
   }
 
-  let workTimeOption = workTimes.map((workTime) => ({
-    key: workTime.id,
-    text: workTime.name,
-    value: workTime.id,
-  }));
-
   return (
     <div>
+      <Segment>
       <h4 style={{ fontWeight: "bold", color: "teal" }}>Çalışma Zamanı</h4>
-      <Dropdown
-        search
-        clearable
-        icon="search"
-        iconPosition="left"
-        className="search"
-        placeholder="Çalışma Zamanı Seçiniz..."
-        fluid
-        selection
-        options={workTimeOption}
+      {workTimes.map((workTime)=>(
+        <Checkbox
+        key={workTime.id}
+        value={workTime.id}
+        label={workTime.name}
         onChange={handleChange}
-      />
+        />
+      ))}
+      </Segment>
     </div>
   );
 }

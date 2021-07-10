@@ -21,7 +21,8 @@ export default function SideBar() {
           <br/>
           <WorkTimeList />
           <br/>
-          <Button basic color="blue">İŞ BUL</Button>
+          <Button basic color="blue">İŞ ARA</Button>
+          <Button basic color="blue">Filtreyi Kaldır</Button>
         </Card.Content>
       </Card>
     </div>

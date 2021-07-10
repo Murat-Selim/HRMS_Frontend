@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Checkbox, Segment } from "semantic-ui-react";
 import WorkPlaceService from "../services/workPlaceService";
 
 export default function WorkPlaceList() {
@@ -16,27 +16,20 @@ export default function WorkPlaceList() {
     console.log(e.target.value);
   }
 
-  let workPlaceOption = workPlaces.map((workPlace) => ({
-    key: workPlace.id,
-    text: workPlace.name,
-    value: workPlace.id,
-  }));
-
   return (
    <div>
+     <Segment>
       <h4 style={{fontWeight:"bold", color:"teal"}}>Çalışma Yeri</h4>
-      <Dropdown
-        search
-        clearable
-        icon="search"
-        iconPosition="left"
-        className="search"
-        placeholder="Çalışma Yeri Seçiniz..."
-        fluid
-        selection
-        options={workPlaceOption}
+       {workPlaces.map((workPlace) => (
+        <Checkbox
+        key={workPlace.id}
+        value={workPlace.id}
+        label={workPlace.name}
         onChange={handleChange}
-      />
+        />
+       ))}
+      
+      </Segment>
    </div>
    );
 }

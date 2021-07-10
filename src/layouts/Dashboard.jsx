@@ -21,7 +21,7 @@ export default function Dashboard() {
       <Grid>
         <Grid.Row>
           <Grid.Column width={4}>
-            <SideBar/>
+            <SideBar style={{height:"639px"}}/>
           </Grid.Column>
           <Grid.Column width={12}>
             <Route exact path="/" component={JobAdvertList}/>
@@ -33,7 +33,6 @@ export default function Dashboard() {
             <Route exact path="/jobAdverts/:id" component={JobAdvertDetail}/>
             <Route exact path="/jobAdvertAdd" component={JobAdvertAdd}/>
             <Route exact path="/jobAdvertWaitingConfirm" component={JobAdvertWaitingConfirm}/>
-            <Route exact path="/jobAdvertAdd" component={JobAdvertAdd}/>
             <Route exact path="/jobPositionList" component={JobPositionList}/>
             <Route exact path="/cvList" component={CvList}/>
             <Route exact path="/cv/:id" component={CvList}/>
