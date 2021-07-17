@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Card } from "semantic-ui-react";
-import JobAdvertService from "../services/jobAdvertService";
+import JobAdvertService from "../../services/jobAdvertService";
 
 export default function JobAdvertDetail() {
   let { id } = useParams();

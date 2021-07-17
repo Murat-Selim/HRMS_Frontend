@@ -29,10 +29,8 @@ export default function Navi() {
           <Menu.Item icon="braille" name="HRMS" />
 
           <Menu.Item as={NavLink} to="/jobAdvertList" name="Ana Sayfa" icon="home" />
-          <Menu.Item name="Cvler" as={NavLink} to="/cvList" />
+          <Menu.Item name="Cvler" as={NavLink} to="/cv" />
 
-          
-          
           <Menu.Menu position="right">
           {favorites.length>0&&<FavoriteSummary/>} 
           <Menu.Item>

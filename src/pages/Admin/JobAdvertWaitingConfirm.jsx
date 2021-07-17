@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Table } from "semantic-ui-react";
-import JobAdvertService from "../services/jobAdvertService";
+import JobAdvertService from "../../services/jobAdvertService";
 
 export default function JobAdvertWaitingConfirm() {
   

@@ -1,19 +1,17 @@
 import React from "react";
 import { Grid } from 'semantic-ui-react'
-import JobAdvertList from '../pages/JobAdvertList'
-import JobPositionList from '../pages/JobPositionList'
+import JobAdvertList from '../pages/Job/JobAdvertList'
 import { Route } from 'react-router-dom'
-import CityList from "../pages/CityList";
 import CandidateList from "../pages/CandidateList";
 import EmployerList from '../pages/EmployerList';
-import CvList from "../pages/CvList";
-import JobAdvertAdd from "../pages/JobAdvertAdd";
-import SideBar from "./SideBar";
-import JobAdvertDetail from "../pages/JobAdvertDetail";
-import EmployeeList from "../pages/EmployeeList";
-import FavoriteJobAdvertList from "../pages/FavoriteJobAdvertList";
-import JobAdvertWaitingConfirm from "../pages/JobAdvertWaitingConfirm";
-import EmployerWaitingConfirm from "../pages/EmployerWaitingConfirm";
+import Cv from "../pages/Cv/Cv";
+import JobAdvertAdd from "../pages/Job/JobAdvertAdd";
+import JobAdvertDetail from "../pages/Job/JobAdvertDetail";
+import EmployeeList from "../pages/Admin/EmployeeList";
+import FavoriteJobAdvertList from "../pages/Job/FavoriteJobAdvertList";
+import JobAdvertWaitingConfirm from "../pages/Admin/JobAdvertWaitingConfirm";
+import EmployerWaitingConfirm from "../pages/Admin/EmployerWaitingConfirm";
+import JobAdvertFilter from "./JobAdvertFilter";
 
 export default function Dashboard() {
   return (
@@ -21,7 +19,7 @@ export default function Dashboard() {
       <Grid>
         <Grid.Row>
           <Grid.Column width={4}>
-            <SideBar style={{height:"639px"}}/>
+            <JobAdvertFilter style={{height:"639px"}}/>
           </Grid.Column>
           <Grid.Column width={12}>
             <Route exact path="/" component={JobAdvertList}/>
@@ -33,10 +31,8 @@ export default function Dashboard() {
             <Route exact path="/jobAdverts/:id" component={JobAdvertDetail}/>
             <Route exact path="/jobAdvertAdd" component={JobAdvertAdd}/>
             <Route exact path="/jobAdvertWaitingConfirm" component={JobAdvertWaitingConfirm}/>
-            <Route exact path="/jobPositionList" component={JobPositionList}/>
-            <Route exact path="/cvList" component={CvList}/>
-            <Route exact path="/cv/:id" component={CvList}/>
-            <Route exact path="/cityList" component={CityList}/>
+            <Route exact path="/cv" component={Cv}/>
+            <Route exact path="/cv/:id" component={Cv}/>
             <Route exact path="/favorites" component={FavoriteJobAdvertList} />
             <Route exact path="/favorites/:id" component={FavoriteJobAdvertList} />
           </Grid.Column>

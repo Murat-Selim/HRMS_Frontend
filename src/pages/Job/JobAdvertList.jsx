@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button, Card, Pagination, Select } from "semantic-ui-react";
-import JobAdvertService from "../services/jobAdvertService";
-import {addToFavorite} from "../store/actions/favoriteActions";
-import FavoriteService from "../services/favoriteService";
+import JobAdvertService from "../../services/jobAdvertService";
+import {addToFavorite} from "../../store/actions/favoriteActions";
+import FavoriteService from "../../services/favoriteService";
 import moment from "moment";
 
 export default function JobAdvertList() {
 
   moment.locale("tr");
   
+  const dispatch = useDispatch();
+
+  const filters = useSelector(state => state.filter.filters);
+  
   const [pageNo, setPageNo] = useState(1);
 
   const [pageSize, setPageSize] = useState(8);
-  
-  const dispatch = useDispatch();
 
   const [jobAdverts, setJobAdverts] = useState([]);
 
   useEffect(() => {
     let jobAdverts = new JobAdvertService();
-    jobAdverts.getByIsActive(pageNo, pageSize).then((result) => setJobAdverts(result.data.data));
-  }, [pageNo, pageSize]);
+    jobAdverts.getByJobAdvertFilter(pageNo, pageSize, filters).then((result) => setJobAdverts(result.data.data.content));
+  }, [pageNo, pageSize, filters]);
 
   const handleAddToFavorite = (jobAdvert) => {
      let addFavorite = new FavoriteService()
@@ -56,14 +58,14 @@ export default function JobAdvertList() {
         <Card.Content>
           <Card.Header
             style={{fontWeight: "bold", height: "30px", marginTop: "7px", color: "purple" }}
-            content={jobAdvert.employerCompanyName}
+            content={jobAdvert.employer?.companyName}
           />
           <hr/>
           <div>
             <Card.Description>
               <h3>
                 <b>Pozisyon : </b> 
-                <strong>{jobAdvert.jobTitle}</strong>
+                <strong>{jobAdvert.jobPosition?.jobTitle}</strong>
               </h3>
             </Card.Description>
             <Card.Description>
@@ -102,7 +104,7 @@ export default function JobAdvertList() {
       <Pagination
          defaultActivePage = {pageNo}
          onPageChange = {(e, data) => handlePaginationChange(data.activePage)}
-         totalPages={10}
+         totalPages={2}
          siblingRange={1}
       />
       <Select

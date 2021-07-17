@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Table } from 'semantic-ui-react';
-import EmployeeService from "../services/employeeService";
+import EmployeeService from "../../services/employeeService";
 
 export default function EmployeeList() {
 

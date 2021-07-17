@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Button, Card } from "semantic-ui-react";
-import FavoriteService from "../services/favoriteService";
+import FavoriteService from "../../services/favoriteService";
 
 
 export default function FavoriteJobAdvertList() {
