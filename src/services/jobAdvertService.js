@@ -29,5 +29,9 @@ export default class JobAdvertService{
     updateChangeFalse(id){
         return axios.put("http://localhost:8080/api/jobAdverts/updateChangeFalse?userId=" + id)
     }
+
+    getByJobAdvertFilter(pageNo, pageSize, filter){
+        return axios.post(`http://localhost:8080/api/jobAdverts/getByJobAdvertFilter?pageNo=${pageNo}&pageSize=${pageSize}`,filter)
+    }
     
 }

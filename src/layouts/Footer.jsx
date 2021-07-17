@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Segment } from "semantic-ui-react";
+import {Icon, Segment } from "semantic-ui-react";
 
 export default function Footer() {
   return (
@@ -11,8 +11,8 @@ export default function Footer() {
         0555 333 11 11 &nbsp;&nbsp;&nbsp;
         <Icon name="map marker alternate" />
         Istanbul/Türkiye &nbsp;&nbsp;&nbsp;
-        <br></br>
-        <br></br>
+        <br/>
+        <br/>
         ©Copyright 2021
       </Segment>
     </div>

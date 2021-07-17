@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import JobPositionService from "../services/jobPositionService";
-import JobAdvertService from "../services/jobAdvertService";
-import WorkTimeService from "../services/workTimeService";
-import WorkPlaceService from "../services/workPlaceService";
-import CityService from "../services/cityService";
+import JobPositionService from "../../services/jobPositionService";
+import JobAdvertService from "../../services/jobAdvertService";
+import WorkTimeService from "../../services/workTimeService";
+import WorkPlaceService from "../../services/workPlaceService";
+import CityService from "../../services/cityService";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Button, Card, FormField, FormGroup, Form, Dropdown } from "semantic-ui-react";
-import HrmsTextInput from "../utilities/customFormControls/HrmsTextInput";
-import HrmsTextArea from "../utilities/customFormControls/HrmsTextArea";
+import HrmsTextInput from "../../utilities/customFormControls/HrmsTextInput";
+import HrmsTextArea from "../../utilities/customFormControls/HrmsTextArea";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 

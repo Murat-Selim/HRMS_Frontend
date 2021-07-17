@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Image } from "semantic-ui-react";
-import CvService from "../services/cvService";
+import CvService from "../../services/cvService";
 
 export default function CvList() {
    

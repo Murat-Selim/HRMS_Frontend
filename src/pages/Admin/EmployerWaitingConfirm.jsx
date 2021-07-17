@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Table } from "semantic-ui-react";
-import EmployerService from "../services/employerService";
+import EmployerService from "../../services/employerService";
 
 export default function EmployerWaitingConfirm() {
   const [employers, setEmployers] = useState([]);
