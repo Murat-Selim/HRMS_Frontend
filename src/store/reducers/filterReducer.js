@@ -10,12 +10,12 @@ export default function filterReducer(state = initialState, { type, payload }) {
         case ADD_FILTER:
             return {
                 ...state,
-                jobAdvertFilterValues: payload
+                filters: payload
             }
         case REMOVE_FILTER:
             return {
                 ...state,
-                jobAdvertFilterValues: payload
+                filters: payload
             }
         default:
             return state;

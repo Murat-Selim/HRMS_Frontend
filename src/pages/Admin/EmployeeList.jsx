@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Table } from 'semantic-ui-react';
 import EmployeeService from "../../services/employeeService";
+import EmployeeUpdate from './EmployeeUpdate';
 
 export default function EmployeeList() {
 
@@ -31,9 +32,7 @@ export default function EmployeeList() {
               <Table.Cell>{employee.lastName}</Table.Cell>
               <Table.Cell>{employee.email}</Table.Cell>
               <Table.Cell>
-                  <Button primary>
-                    Güncelle
-                  </Button>
+              <EmployeeUpdate employee={employee}/>
               </Table.Cell>
               </Table.Row>
           ))}

@@ -16,7 +16,7 @@ export default function FavoriteJobAdvertList() {
   return (
     <div>
       <Card.Group>
-        {favorites?.map((favorite) => (
+        {favorites.map((favorite) => (
           <Card fluid color="blue" key={favorite.id}>
             <Card.Content>
               <Card.Header

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "semantic-ui-react";
 import EmployerService from "../services/employerService";
+import EmployerUpdate from "./EmployerUpdate";
 
 export default function EmployerList() {
   const [employers, setEmployers] = useState([]);
@@ -23,14 +24,14 @@ export default function EmployerList() {
               <Card.Description>{employer.phoneNumber}</Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <div className="ui two buttons">
+                <div>
                   <Button basic color="green">
-                    Ekle
+                    WebSite
                   </Button>
-                  <Button basic color="red">
-                    Güncelle
-                  </Button>
-                </div>
+                  </div>
+                  <div style={{marginTop:"10px"}}>
+                  <EmployerUpdate employer={employer}/>
+                  </div>
               </Card.Content>
         </Card>
         ))}
