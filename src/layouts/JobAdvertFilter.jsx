@@ -41,7 +41,7 @@ export default function JobAdvertFilter() {
     workTimes.map(workTime =>
         workTimeOptions.push({
             key: workTime.id,
-            label: workTime.name,
+            text: workTime.name,
             value: workTime.id
         })
     )
@@ -49,7 +49,7 @@ export default function JobAdvertFilter() {
     workPlaces.map(workPlace =>
         workPlaceOptions.push({
             key: workPlace.id,
-            label: workPlace.name,
+            text: workPlace.name,
             value: workPlace.id
         })
     )
@@ -80,6 +80,7 @@ export default function JobAdvertFilter() {
         
         onSubmit: (values) => {
             dispatch(addFilter(values))
+            console.log(values)
         },
     })
 
@@ -99,7 +100,7 @@ export default function JobAdvertFilter() {
       </Card>
       <Card fluid color="teal">
         <Card.Content>
-          <Form>
+          <Form onSubmit={formik.handleSubmit}>
               <Segment color="blue">
                 <h4 style={{fontWeight:"bold", color:"teal"}}>Şehir</h4>
                 <Form.Dropdown
@@ -113,7 +114,7 @@ export default function JobAdvertFilter() {
                   fluid
                   selection
                   options={cityOptions}
-                  onChange={handleChange}
+                  onChange={(e, {name, value}) => formik.setFieldValue(name, value)}
                 />
               </Segment>
               
@@ -131,7 +132,7 @@ export default function JobAdvertFilter() {
                   placeholder="Pozisyon Seçiniz..."
                   fluid
                   selection
-                  onChange={handleChange}
+                  onChange={(e, {name, value}) => formik.setFieldValue(name, value)}
                   options={jobPositionOptions}
                 />
               </Segment>
@@ -143,12 +144,18 @@ export default function JobAdvertFilter() {
                  {workTimeOptions.map((workTimeOption) => (
                    <Form.Checkbox
                       key={workTimeOption.key}
-                      label={workTimeOption.label}
+                      label={workTimeOption.text}
                       value={workTimeOption.value}
-                      onChange={handleChange}
+                      onChange={(e, { value }) => {
+                        formik.setFieldValue(
+                            "workTimeId",
+                            formik.values.workTimeId.includes(value)
+                                ? [...formik.values.workTimeId.filter((i) => i !== value)]
+                                : [...formik.values.workTimeId, value]
+                        )
+                    }}
                    />
                  ))}
-        
               </Segment>
 
               <Divider />
@@ -159,15 +166,15 @@ export default function JobAdvertFilter() {
                   <Form.Checkbox
                     key={workPlaceOption.key}
                     value={workPlaceOption.value}
-                    label={workPlaceOption.label}
-                    onChange={handleChange}
+                    label={workPlaceOption.text}
+                    onChange={(e, {name, value}) => formik.setFieldValue(name, value)}
                   />
                  ))}
               </Segment>
 
               <Divider />
 
-              <Button basic color="blue" onClick={formik.handleSubmit}>İŞ ARA</Button>
+              <Button type="submit" basic color="blue" onClick={formik.handleSubmit}>İŞ ARA</Button>
               <Button basic color="blue" onClick={handleRemoveFilters}>Filtreyi Kaldır</Button>
           </Form>
         </Card.Content>

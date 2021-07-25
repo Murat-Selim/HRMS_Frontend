@@ -5,7 +5,7 @@ export default class EmployeeService{
         return axios.get("http://localhost:8080/api/employees/getall")
     }
 
-    updateEmployee(employer){
-        return axios.put("http://localhost:8080/api/employees/update", employer)
+    updateEmployee(employee){
+        return axios.put("http://localhost:8080/api/employees/update", employee)
     }
 }
