@@ -26,14 +26,14 @@ export default function FavoriteJobAdvertList() {
                   marginTop: "7px",
                   color: "purple",
                 }}
-                content={favorite.jobAdvert?.employer?.companyName}
+                content={favorite.jobAdvert?.employer.companyName}
               />
               <hr />
               <div>
                 <Card.Description>
                   <h3>
                     <b>Pozisyon : </b>
-                    <strong>{favorite.jobAdvert?.jobPosition?.jobTitle}</strong>
+                    <strong>{favorite.jobAdvert?.jobPosition.jobTitle}</strong>
                   </h3>
                 </Card.Description>
                 <Card.Description>

@@ -7,6 +7,7 @@ import JobAdvertService from "../../services/jobAdvertService";
 import {addToFavorite} from "../../store/actions/favoriteActions";
 import FavoriteService from "../../services/favoriteService";
 import moment from "moment";
+import "moment/locale/tr";
 
 export default function JobAdvertList() {
 
@@ -16,15 +17,20 @@ export default function JobAdvertList() {
 
   const filters = useSelector(state => state.filter.filters);
   
+  const [totalPage, setTotalPage] = useState(1);
+
   const [pageNo, setPageNo] = useState(1);
 
-  const [pageSize, setPageSize] = useState(8);
+  const [pageSize, setPageSize] = useState(10);
 
   const [jobAdverts, setJobAdverts] = useState([]);
 
   useEffect(() => {
     let jobAdverts = new JobAdvertService();
-    jobAdverts.getByJobAdvertFilter(pageNo, pageSize, filters).then((result) => setJobAdverts(result.data.data.content));
+    jobAdverts.getByJobAdvertFilter(pageNo, pageSize, filters).then((result) => {
+    setJobAdverts(result.data.data.content)
+    setTotalPage(result.data.data.totalPages)
+    });
   }, [pageNo, pageSize, filters]);
 
   const handleAddToFavorite = (jobAdvert) => {
@@ -104,7 +110,8 @@ export default function JobAdvertList() {
       <Pagination
          defaultActivePage = {pageNo}
          onPageChange = {(e, data) => handlePaginationChange(data.activePage)}
-         totalPages={2}
+         totalPages={totalPage}
+         pageSize={pageSize}
          siblingRange={1}
       />
       <Select

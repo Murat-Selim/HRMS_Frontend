@@ -21,8 +21,6 @@ export default function JobAdvertFilter() {
 
     const workTimeOptions = []
     const workPlaceOptions = []
-    const jobPositionOptions = []
-    const cityOptions = []
 
     useEffect(() => {
         let cityService = new CityService()
@@ -54,21 +52,17 @@ export default function JobAdvertFilter() {
         })
     )
 
-    cities.map(city =>
-        cityOptions.push({
-            key: city.id,
-            text: city.name,
-            value: city.id
-        })
-    )
+    let cityOptions = cities.map((city) => ({
+      key: city.id,
+      text: city.name,
+      value: city.id,
+    }));
 
-    jobPositions.map(jobPosition =>
-        jobPositionOptions.push({
-            key: jobPosition.id,
-            text: jobPosition.jobTitle,
-            value: jobPosition.id
-        })
-    )
+    let jobPositionOptions = jobPositions.map((jobPosition) => ({
+      key: jobPosition.id,
+      text: jobPosition.jobTitle,
+      value: jobPosition.id,
+    }));
 
     const formik = useFormik({
         initialValues: {
@@ -88,10 +82,6 @@ export default function JobAdvertFilter() {
         dispatch(removeFilter())
         formik.resetForm(formik.values)
     }
-
-    function handleChange(e) {
-        formik.setFieldValue(e.target.value);
-      }
 
   return (
     <div>
@@ -114,7 +104,14 @@ export default function JobAdvertFilter() {
                   fluid
                   selection
                   options={cityOptions}
-                  onChange={(e, {name, value}) => formik.setFieldValue(name, value)}
+                  onChange={(e, { value }) => {
+                    formik.setFieldValue(
+                        "cityId",
+                        formik.values.cityId.includes(value)
+                            ? [...formik.values.cityId.filter((i) => i !== value)]
+                            : value
+                    )
+                  }}
                 />
               </Segment>
               
@@ -132,8 +129,15 @@ export default function JobAdvertFilter() {
                   placeholder="Pozisyon Seçiniz..."
                   fluid
                   selection
-                  onChange={(e, {name, value}) => formik.setFieldValue(name, value)}
                   options={jobPositionOptions}
+                  onChange={(e, { value }) => {
+                    formik.setFieldValue(
+                        "jobPositionId",
+                        formik.values.jobPositionId.includes(value)
+                            ? [...formik.values.jobPositionId.filter((i) => i !== value)]
+                            : value
+                    )
+                  }}
                 />
               </Segment>
 
@@ -153,7 +157,7 @@ export default function JobAdvertFilter() {
                                 ? [...formik.values.workTimeId.filter((i) => i !== value)]
                                 : [...formik.values.workTimeId, value]
                         )
-                    }}
+                      }}
                    />
                  ))}
               </Segment>
@@ -165,9 +169,16 @@ export default function JobAdvertFilter() {
                  {workPlaceOptions.map((workPlaceOption) => (
                   <Form.Checkbox
                     key={workPlaceOption.key}
-                    value={workPlaceOption.value}
                     label={workPlaceOption.text}
-                    onChange={(e, {name, value}) => formik.setFieldValue(name, value)}
+                    value={workPlaceOption.value}
+                    onChange={(e, { value }) => {
+                      formik.setFieldValue(
+                          "workPlaceId",
+                          formik.values.workPlaceId.includes(value)
+                              ? [...formik.values.workPlaceId.filter((i) => i !== value)]
+                              : [...formik.values.workTimeId, value]
+                      )
+                    }}
                   />
                  ))}
               </Segment>

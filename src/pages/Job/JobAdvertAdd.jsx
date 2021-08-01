@@ -11,10 +11,13 @@ import HrmsTextInput from "../../utilities/customFormControls/HrmsTextInput";
 import HrmsTextArea from "../../utilities/customFormControls/HrmsTextArea";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import moment from "moment";
+import "moment/locale/tr";
 
 export default function JobAdvertAdd() {
   
+  moment.locale("tr");
+
   const history = useHistory();
 
   const [jobPositions, setJobPosition] = useState([]);
@@ -90,7 +93,7 @@ export default function JobAdvertAdd() {
   });
 
   const handleSubmit = (values) => {
-    values.employerId = 28; // Session tamamlandığında employer değerini sessiondan alacak...
+    values.employerId = 29; // Session tamamlandığında employer değerini sessiondan alacak...
     let jobAdvertService = new JobAdvertService();
     jobAdvertService
       .addJobAdvert(values)

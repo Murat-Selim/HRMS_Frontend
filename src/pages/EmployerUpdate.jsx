@@ -5,19 +5,22 @@ import HrmsTextInput from "../utilities/customFormControls/HrmsTextInput";
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 export default function EmployerUpdate({ employer }) {
     
+    const history = useHistory();
+
     const [open, setOpen] = useState(false);
 
     const initialValues = {
-      id:employer?.id,
-      email:employer?.email,
-      password:employer?.password,
-      companyName:employer?.companyName,
-      webAddress:employer?.webAddress,
-      phoneNumber:employer?.phoneNumber,
-      isActivated: true
+      id:employer.id,
+      email:employer.email,
+      password:employer.password,
+      companyName:employer.companyName,
+      webAddress:employer.webAddress,
+      phoneNumber:employer.phoneNumber,
+      isActivated: false
     };
 
     const validationSchema = Yup.object({
@@ -34,7 +37,7 @@ export default function EmployerUpdate({ employer }) {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={<Button content="Güncelle" basic color="red"/>}
+        trigger={<Button content="Güncelle" color="green"/>}
       >
         <Modal.Header>Bilgilerini Güncelle</Modal.Header>
         <Modal.Content>
@@ -43,16 +46,26 @@ export default function EmployerUpdate({ employer }) {
               validationSchema={validationSchema}
               enableReinitialize={true}
               onSubmit = {(values) => {
+                const {email, password, companyName, webAddress, phoneNumber, isActivated} = values
+                let data = {
+                  id: employer.id,
+                  email,
+                  password,
+                  companyName,
+                  webAddress,
+                  phoneNumber,
+                  isActivated
+                }
                 let employerService = new EmployerService();
-                employerService.updateEmployer(values)
-                .then((result) => {
-                console.log(result.data.message);
-                toast.success("Bilgiler güncellendi!");
-                })
+                employerService.updateEmployer(data)
+                .then((result) => result.data.data)
+                toast.success("Bilgiler personelin onayının ardından güncellenecektir.")
+                history.push("/employerWaitingConfirm")
+                setOpen(false)
               }}
           >
-          {(handleSubmit) => (
-            <Form onSubmit={handleSubmit} className="ui form">
+          {(formikprops) => (
+            <Form onSubmit={formikprops.handleSubmit} className="ui form">
                <Form.Field>
                     <HrmsTextInput name="companyName" placeholder="Şirket ismi" />
                </Form.Field>
@@ -69,8 +82,8 @@ export default function EmployerUpdate({ employer }) {
                     <HrmsTextInput name="password" placeholder="Şifre" />
                </Form.Field>
             <Modal.Actions>
-              <Button content="Vazgeç" color="red" onClick={() => setOpen(false)}/>
               <Button content="Güncelle" type="submit" color="blue"/>
+              <Button content="Vazgeç" color="red" onClick={() => setOpen(false)}/>
             </Modal.Actions>
           </Form>
           )}
