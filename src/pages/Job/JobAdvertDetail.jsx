@@ -39,13 +39,25 @@ export default function JobAdvertDetail() {
             <Card.Description>
               <div style={{ margin: "10px" }}>
                 <b> Maaş Aralığı : </b> 
-                  <b><ins>
+                  <ins>
                     {jobAdvert.minSalary} - {jobAdvert.maxSalary}
-                  </ins></b>
+                  </ins>
               </div>
             </Card.Description>
             <Card.Description>
-              <b>Şehir : </b> {jobAdvert?.city?.name} 
+              <div style={{ margin: "10px" }}>
+                <b>Şehir : </b> {jobAdvert?.city?.name} 
+              </div>
+            </Card.Description>
+            <Card.Description>
+              <div style={{ margin: "10px" }}>
+                <b>İş Yeri : </b> {jobAdvert?.workPlace?.name} 
+              </div>
+            </Card.Description>
+            <Card.Description>
+              <div style={{ margin: "10px" }}>
+                <b>İş Zamanı : </b> {jobAdvert?.workTime?.name} 
+              </div>
             </Card.Description>
           </div>
         </Card.Content>

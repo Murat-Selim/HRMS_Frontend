@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card } from "semantic-ui-react";
+import { Button, Table } from "semantic-ui-react";
 import EmployerService from "../services/employerService";
 import EmployerUpdate from "./EmployerUpdate";
 
@@ -13,29 +13,35 @@ export default function EmployerList() {
 
   return (
     <div>
-      <Card.Group>
-      
-      {employers.map((employer) => (
-        <Card fluid color="blue" key={employer.id}>
-            <Card.Content>
-              <Card.Header>{employer.companyName}</Card.Header>
-              <Card.Meta>{employer.webAddress}</Card.Meta>
-              <Card.Meta>{employer.email}</Card.Meta>
-              <Card.Description>{employer.phoneNumber}</Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <div>
-                  <Button basic color="green">
-                    WebSite
-                  </Button>
-                  </div>
-                  <div style={{marginTop:"10px"}}>
-                  <EmployerUpdate employer={employer}/>
-                  </div>
-              </Card.Content>
-        </Card>
-        ))}
-      </Card.Group>
+      <Table celled>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Şirket İsmi</Table.HeaderCell>
+            <Table.HeaderCell>Web Site</Table.HeaderCell>
+            <Table.HeaderCell>Telefon Numarası</Table.HeaderCell>
+            <Table.HeaderCell>Email</Table.HeaderCell>
+            <Table.HeaderCell>Web Site</Table.HeaderCell>
+            <Table.HeaderCell>Güncelle</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+          {employers.map((employer) => (
+            <Table.Row key={employer.id}>
+              <Table.Cell>{employer.companyName}</Table.Cell>
+              <Table.Cell>{employer.webAddress}</Table.Cell>
+              <Table.Cell>{employer.phoneNumber}</Table.Cell>
+              <Table.Cell>{employer.email}</Table.Cell>
+              <Table.Cell>
+                <Button color="blue" content="Web Site" />
+              </Table.Cell>
+              <Table.Cell>
+                <EmployerUpdate employer={employer} />
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
     </div>
   );
 }

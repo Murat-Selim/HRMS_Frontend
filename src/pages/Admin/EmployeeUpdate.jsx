@@ -1,15 +1,15 @@
-import { Formik } from "formik";
 import React, { useState } from "react";
-import { Button, Form, Modal } from "semantic-ui-react";
 import EmployeeService from "../../services/employeeService";
+import { Button, Form, Modal } from "semantic-ui-react";
 import * as Yup from "yup";
+import { Formik } from "formik";
 import { toast } from "react-toastify";
 import HrmsTextInput from "../../utilities/customFormControls/HrmsTextInput";
 
 export default function EmployeeUpdate({ employee }) {
  
     const [open, setOpen] = useState(false);
-
+    
     const initialValues = {
       id:employee.id,
       email:employee.email,
@@ -40,39 +40,39 @@ export default function EmployeeUpdate({ employee }) {
               validationSchema={validationSchema}
               enableReinitialize={true}
               onSubmit = {(values) => {
-                let employeeModal = {
+                const {firstName, lastName, email, password} = values
+                let data = {
                   id:employee.id,
-                  email:values.email,
-                  password:values.password,
-                  firstName:values.firstName,
-                  lastName:values.lastName
+                  firstName,
+                  lastName,
+                  email,
+                  password
                 }
-                console.log(values)
                 let employeeService = new EmployeeService();
-                employeeService.updateEmployee(employeeModal)
-                .then((result) => result.data.data)
+                employeeService.updateEmployee(data)
                 toast.success("Bilgiler güncellendi!");
+                setOpen(false)
               }}
           >
           {(formikprops) => (
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
-               <Form.Field>
-                    <HrmsTextInput name="firstName" placeholder="İsim" />
-               </Form.Field>
-               <Form.Field>
-                    <HrmsTextInput name="lastName" placeholder="Soyisim" />
-               </Form.Field>
-               <Form.Field>
-                    <HrmsTextInput name="email" placeholder="Email" />
-               </Form.Field>
-               <Form.Field>
-                    <HrmsTextInput name="password" placeholder="Şifre" />
-               </Form.Field>
-            <Modal.Actions>
-              <Button content="Vazgeç" color="red" onClick={() => setOpen(false)}/>
-              <Button content="Güncelle" type="submit" color="blue"/>
-            </Modal.Actions>
-          </Form>
+              <Form.Field>
+                  <HrmsTextInput name="firstName" placeholder="Ad"/> 
+              </Form.Field>
+              <Form.Field>
+                  <HrmsTextInput name="lastName" placeholder="Soyad"/>         
+              </Form.Field>
+              <Form.Field>
+                  <HrmsTextInput name="email" placeholder="Email"/> 
+              </Form.Field> 
+              <Form.Field>
+                  <HrmsTextInput name="password" placeholder="Şifre"/>    
+              </Form.Field>
+             <Modal.Actions>
+                <Button content="Güncelle" type="submit" color="blue"/>
+                <Button content="Vazgeç" color="red" onClick={() => setOpen(false)}/>
+              </Modal.Actions>
+            </Form>
           )}
           </Formik>
         </Modal.Content>

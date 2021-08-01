@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Table } from 'semantic-ui-react';
+import React, { useEffect, useState } from "react";
+import { Table } from "semantic-ui-react";
 import EmployeeService from "../../services/employeeService";
-import EmployeeUpdate from './EmployeeUpdate';
+import EmployeeUpdate from "./EmployeeUpdate";
 
 export default function EmployeeList() {
-
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -12,10 +11,9 @@ export default function EmployeeList() {
     employees.getEmployees().then((result) => setEmployees(result.data.data));
   }, []);
 
-
-    return (
-        <div>
-     <Table celled>
+  return (
+    <div>
+      <Table celled>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>İsim</Table.HeaderCell>
@@ -32,12 +30,12 @@ export default function EmployeeList() {
               <Table.Cell>{employee.lastName}</Table.Cell>
               <Table.Cell>{employee.email}</Table.Cell>
               <Table.Cell>
-              <EmployeeUpdate employee={employee}/>
+                <EmployeeUpdate employee={employee} />
               </Table.Cell>
-              </Table.Row>
+            </Table.Row>
           ))}
         </Table.Body>
-        </Table>
-        </div>
-    );
+      </Table>
+    </div>
+  );
 }

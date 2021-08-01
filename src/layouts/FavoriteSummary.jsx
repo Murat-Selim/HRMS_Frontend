@@ -15,7 +15,7 @@ export default function FavoriteSummary() {
                 {
                   favorites.map((favorite)=>(
                     <Dropdown.Item key={favorite.id}>
-                      {favorite.jobAdvert.jobTitle}
+                      {favorite.jobAdvert?.jobPosition.jobTitle}
                     </Dropdown.Item>
 
                   ))
