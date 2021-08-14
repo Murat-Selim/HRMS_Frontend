@@ -3,7 +3,7 @@ import axios from "axios";
 export default class EducationService{
     
     getAll(){
-        return axios.get("http://localhost:8080/api/educations/getall")
+        return axios.get("http://localhost:8080/api/educations/getAll")
     }
 
     add(education){

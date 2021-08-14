@@ -3,19 +3,19 @@ import axios from "axios";
 export default class JobAdvertService{
 
     getJobAdverts(){
-        return axios.get("http://localhost:8080/api/jobAdverts/getall")
+        return axios.get("http://localhost:8080/api/jobAdverts/getAll")
     }
 
     getByIsActive(pageNo, pageSize){
         return axios.get(`http://localhost:8080/api/jobAdverts/getAllByIsActive?pageNo=${pageNo}&pageSize=${pageSize}`)
     }
 
-    getByNotActive(){
-        return axios.get("http://localhost:8080/api/jobAdverts/getAllByNotActive")
+    getByNotActive(pageNo, pageSize){
+        return axios.get(`http://localhost:8080/api/jobAdverts/getAllByNotActive?pageNo=${pageNo}&pageSize=${pageSize}`)
     }
 
     getById(id){
-        return axios.get("http://localhost:8080/api/jobAdverts/getbyid?id=" + id)
+        return axios.get("http://localhost:8080/api/jobAdverts/getById?id=" + id)
     }
 
     addJobAdvert(values){
@@ -33,5 +33,8 @@ export default class JobAdvertService{
     getByJobAdvertFilter(pageNo, pageSize, filter){
         return axios.post(`http://localhost:8080/api/jobAdverts/getByJobAdvertFilter?pageNo=${pageNo}&pageSize=${pageSize}`,filter)
     }
-    
+
+    getByIsActiveAndEmployerId(id, pageNo, pageSize){
+        return axios.get(`http://localhost:8080/api/jobAdverts/getByIsActiveAndEmployerId?employerId=${id}&pageNo=${pageNo}&pageSize=${pageSize}`)
+    }
 }

@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom'
 import CandidateList from "../pages/CandidateList";
 import EmployerList from '../pages/EmployerList';
 import Cv from "../pages/Cv/Cv";
+import CvDetail from "../pages/Cv/CvDetail";
 import JobAdvertAdd from "../pages/Job/JobAdvertAdd";
 import JobAdvertDetail from "../pages/Job/JobAdvertDetail";
 import EmployeeList from "../pages/Admin/EmployeeList";
@@ -12,6 +13,7 @@ import FavoriteJobAdvertList from "../pages/Job/FavoriteJobAdvertList";
 import JobAdvertWaitingConfirm from "../pages/Admin/JobAdvertWaitingConfirm";
 import EmployerWaitingConfirm from "../pages/Admin/EmployerWaitingConfirm";
 import JobAdvertFilter from "./JobAdvertFilter";
+import EmployerDetail from "../pages/EmployerDetail";
 
 export default function Dashboard() {
   return (
@@ -25,6 +27,7 @@ export default function Dashboard() {
             <Route exact path="/" component={JobAdvertList}/>
             <Route exact path="/candidateList" component={CandidateList}/>
             <Route exact path="/employerList" component={EmployerList}/>
+            <Route exact path="/employer/:id" component={EmployerDetail}/>
             <Route exact path="/employerWaitingConfirm" component={EmployerWaitingConfirm}/>
             <Route exact path="/employeeList" component={EmployeeList}/>
             <Route exact path="/jobAdvertList" component={JobAdvertList}/>
@@ -32,9 +35,9 @@ export default function Dashboard() {
             <Route exact path="/jobAdvertAdd" component={JobAdvertAdd}/>
             <Route exact path="/jobAdvertWaitingConfirm" component={JobAdvertWaitingConfirm}/>
             <Route exact path="/cv" component={Cv}/>
-            <Route exact path="/cv/:id" component={Cv}/>
+            <Route exact path="/cv/:id" component={CvDetail}/>
+            <Route exact path="/candidateCv/:id" component={CvDetail}/>
             <Route exact path="/favorites" component={FavoriteJobAdvertList} />
-            <Route exact path="/favorites/:id" component={FavoriteJobAdvertList} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

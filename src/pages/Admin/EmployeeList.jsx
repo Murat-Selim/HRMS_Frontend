@@ -4,11 +4,12 @@ import EmployeeService from "../../services/employeeService";
 import EmployeeUpdate from "./EmployeeUpdate";
 
 export default function EmployeeList() {
+
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     let employees = new EmployeeService();
-    employees.getEmployees().then((result) => setEmployees(result.data.data));
+    employees.getEmployees().then((result) => {setEmployees(result.data.data)});
   }, []);
 
   return (

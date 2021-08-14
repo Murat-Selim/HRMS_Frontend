@@ -227,11 +227,11 @@ export default function JobAdvertAdd() {
 
                 <FormGroup widths="equal">
                   <FormField>
-                    <HrmsTextInput type="date" name="createdDate" placeholder="Oluşturma tarihi"/>
+                    <HrmsTextInput type="date" name="createdDate" placeholder="YYYY-AA-GG"/>
                   </FormField> 
 
                   <FormField>
-                    <HrmsTextInput type="date" name="applicationDeadline" placeholder="Bitiş tarihi"/>
+                    <HrmsTextInput type="date" name="applicationDeadline" placeholder="YYYY-AA-GG"/>
                   </FormField>
                 </FormGroup>
 

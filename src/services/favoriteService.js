@@ -3,12 +3,12 @@ import axios from "axios";
 
 export default class FavoriteService{
     
-    getAll(){
-        return axios.get("http://localhost:8080/api/favoriteJobAdverts/getAll")
+    getAll(pageNo, pageSize){
+        return axios.get(`http://localhost:8080/api/favoriteJobAdverts/getAll?pageNo=${pageNo}&pageSize=${pageSize}`)
     }
     
     getByCandidateId(candidateId) {
-      return axios.get("http://localhost:8080/api/favoriteJobAdverts/getByCandidateId?candidateId=?" + candidateId);
+      return axios.get("http://localhost:8080/api/favoriteJobAdverts/getByCandidateId?candidateId=" + candidateId);
     }
     
     getById(id){
@@ -19,7 +19,7 @@ export default class FavoriteService{
        return axios.post("http://localhost:8080/api/favoriteJobAdverts/add", favoriteJobAdvert);
     }
   
-    delete(jobAdvertId) {
-       return axios.delete("http://localhost:8080/api/favoriteJobAdverts/delete?jobAdvertId=" + jobAdvertId);
+    delete(candidateId, jobAdvertId) {
+       return axios.delete(`http://localhost:8080/api/favoriteJobAdverts/delete?candidateId=${candidateId}&jobAdvertId=${jobAdvertId}`);
     }
 }

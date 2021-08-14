@@ -52,6 +52,7 @@ export default function EmployeeUpdate({ employee }) {
                 employeeService.updateEmployee(data)
                 toast.success("Bilgiler güncellendi!");
                 setOpen(false)
+                window.location.reload(2000)
               }}
           >
           {(formikprops) => (
