@@ -62,6 +62,7 @@ export default function EmployerUpdate({ employer }) {
                 toast.success("Bilgiler personelin onayının ardından güncellenecektir.")
                 history.push("/employerWaitingConfirm")
                 setOpen(false)
+                window.location.reload()
               }}
           >
           {(formikprops) => (

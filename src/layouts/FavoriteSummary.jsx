@@ -5,7 +5,7 @@ import { Dropdown, Menu } from 'semantic-ui-react'
 
 export default function FavoriteSummary() {
    
-    const {favorites} = useSelector(state => state.favorite)
+    const favorites = useSelector(state => state.favorite.favorites)
 
     return (
         <div>
@@ -14,8 +14,8 @@ export default function FavoriteSummary() {
               <Dropdown.Menu>
                 {
                   favorites.map((favorite)=>(
-                    <Dropdown.Item key={favorite.id}>
-                      {favorite.jobAdvert?.jobPosition.jobTitle}
+                    <Dropdown.Item key={favorite.jobAdvert?.id}>
+                      {favorite.jobAdvert?.jobPosition?.jobTitle}
                     </Dropdown.Item>
 
                   ))

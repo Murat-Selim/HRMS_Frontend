@@ -8,7 +8,7 @@ export function addToFavorite(jobAdvert){
     }
 }
 
-export function removeToFavorite(jobAdvert){
+export function removeFromFavorite(jobAdvert){
     return{
         type : REMOVE_FROM_FAVORITES,
         payload: jobAdvert

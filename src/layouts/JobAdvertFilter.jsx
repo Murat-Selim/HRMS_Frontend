@@ -88,6 +88,7 @@ export default function JobAdvertFilter() {
       <Card fluid color="green">
           <h2 style={{fontWeight:"bold", color:"green"}}>Filtreler</h2>
       </Card>
+      
       <Card fluid color="teal">
         <Card.Content>
           <Form onSubmit={formik.handleSubmit}>
