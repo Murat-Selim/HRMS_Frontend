@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Pagination, Select, Table } from "semantic-ui-react";
-import EmployerService from "../services/employerService";
-import EmployerUpdate from "./EmployerUpdate";
+import EmployerService from "../../services/employerService";
+import EmployerUpdate from "../Employer/EmployerUpdate";
 
 export default function EmployerList() {
 

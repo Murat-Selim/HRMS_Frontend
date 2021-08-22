@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import * as Yup from "yup";
 import React, { useState } from 'react'
-import { Form, Modal, Button, Icon } from "semantic-ui-react";
+import { Form, Modal, Button, Icon, Segment, Image } from "semantic-ui-react";
 import CvService from "../../../services/cvService";
 import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput';
 import HrmsTextArea from '../../../utilities/customFormControls/HrmsTextArea';
@@ -13,7 +13,7 @@ export default function CvUpdate({cv}) {
     
     const initialValues = {
         id: cv.id,
-        candidateId: cv.candidate?.id,
+        candidateId: cv.candidateId,
         githubLink: cv.githubLink,
         linkedinLink: cv.linkedinLink,
         description: cv.description,
@@ -34,6 +34,7 @@ export default function CvUpdate({cv}) {
     const handleOnSubmit = (values) => {
         let cvModal = {
             id: cv.id,
+            candidateId: values.candidateId,
             githubLink: values.githubLink,
             linkedinLink: values.linkedinLink,
             description: values.description,
@@ -47,6 +48,18 @@ export default function CvUpdate({cv}) {
         setOpen(false)
         window.location.reload(2000)
     }
+
+    const handleInputFile = (e) => { 
+      let data = new FormData();
+      data.append("file", e.target.files[0]);
+  
+      let cvService = new CvService()
+      cvService.updateImage(data, 1)
+        .then(result => result.data.data); 
+        toast.success("Fotoğraf Güncellendi!")
+        setOpen(false)
+        window.location.reload(2000)     
+    };
   
   return (
     <div>
@@ -62,14 +75,19 @@ export default function CvUpdate({cv}) {
               initialValues={initialValues}
               validationSchema={validationSchema}
               enableReinitialize={true}
-              onSubmit = {() => handleOnSubmit()}
+              onSubmit = {(values) => handleOnSubmit(values)}
           >
           {(formikprops) => (
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
-                   <Form.Field>
-                        <Icon name="image" size="big" />
-                        <HrmsTextInput name="image" placeholder="Resim"/> 
-                   </Form.Field>
+                   <Segment>
+                        <Image
+                            style={{ width: "170px", height: "170px", objectFit: "cover" }}
+                            fluid
+                        />
+                        <Button style={{ marginTop: "10px" }} icon="photo" >
+                            <input id="file" name="file" type="file" onChange={(e) => handleInputFile(e)}/>
+                        </Button>
+                    </Segment>
                 <Form.Group widths="2">
                    <Form.Field>
                         <Icon name="github" size="big" />

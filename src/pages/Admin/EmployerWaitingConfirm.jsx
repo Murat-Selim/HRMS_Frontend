@@ -41,8 +41,8 @@ export default function EmployerWaitingConfirm() {
     changeActive.updateChangeActive(id);
     const removeList = employers.filter((employer) => employer.id !== id);
     setEmployers(removeList);
-    toast.success("İş Veren onaylandı!")
-    window.location.reload()
+    toast.success("İş Veren Onaylandı!")
+    window.location.reload(2000)
   }
 
   return (
@@ -54,7 +54,7 @@ export default function EmployerWaitingConfirm() {
             <Table.HeaderCell>Web Adress</Table.HeaderCell>
             <Table.HeaderCell>E-mail</Table.HeaderCell>
             <Table.HeaderCell>Telefon Numarası</Table.HeaderCell>
-            <Table.HeaderCell>Onay Durumu</Table.HeaderCell>
+            <Table.HeaderCell>Onay Bekleyen</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -66,7 +66,7 @@ export default function EmployerWaitingConfirm() {
               <Table.Cell>{employer.email}</Table.Cell>
               <Table.Cell>{employer.phoneNumber}</Table.Cell>
               <Table.Cell>
-                <Button color="red" onClick={() => handleIsActive(employer.id)}>Onay Bekleyen</Button>
+                <Button color="green" onClick={() => handleIsActive(employer.id)}>Onayla</Button>
               </Table.Cell>
             </Table.Row>
           ))}

@@ -33,4 +33,12 @@ export default class EmployerService{
     updateChangeFalse(id){
         return axios.put("http://localhost:8080/api/employers/updateChangeFalse?userId=" + id)
     }
+
+    getByUpdatedData(){
+        return axios.get("http://localhost:8080/api/employers/getByUpdatedDataNotNull")
+    }
+
+    updateConfirm(id){
+        return axios.post("http://localhost:8080/api/employers/updateconfirm?userId="+id);
+    }
 }

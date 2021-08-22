@@ -7,8 +7,8 @@ export default class FavoriteService{
         return axios.get(`http://localhost:8080/api/favoriteJobAdverts/getAll?pageNo=${pageNo}&pageSize=${pageSize}`)
     }
     
-    getByCandidateId(candidateId) {
-      return axios.get("http://localhost:8080/api/favoriteJobAdverts/getByCandidateId?candidateId=" + candidateId);
+    getByCandidateId(candidateId, pageNo, pageSize) {
+      return axios.get(`http://localhost:8080/api/favoriteJobAdverts/getAllByCandidateId?candidateId=${candidateId}&pageNo=${pageNo}&pageSize=${pageSize}`);
     }
     
     getById(id){

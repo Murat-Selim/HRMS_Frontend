@@ -93,7 +93,7 @@ export default function JobAdvertAdd() {
   });
 
   const handleSubmit = (values) => {
-    values.employerId = 29; // Session tamamlandığında employer değerini sessiondan alacak...
+    values.employerId = 24; // Session tamamlandığında employer değerini sessiondan alacak...
     let jobAdvertService = new JobAdvertService();
     jobAdvertService
       .addJobAdvert(values)
@@ -116,16 +116,14 @@ export default function JobAdvertAdd() {
             content="İş İlanı Formu"
             style={{ fontWeight: "bold", color: "teal" }}
           />
-          <hr />
-
+          </Card.Content>
+          <Card.Content extra>
           <Formik
             initialValues={initialValues}
             validationSchema={validateSchema}
-            
             onSubmit={(values) => {
               handleSubmit(values)
             }}
-            
           >
             {(formikprops) => (
               <Form onSubmit={formikprops.handleSubmit} className="ui form">
@@ -246,7 +244,7 @@ export default function JobAdvertAdd() {
               </Form>
             )}
           </Formik>
-        </Card.Content>
+          </Card.Content>
       </Card>
     </div>
   );

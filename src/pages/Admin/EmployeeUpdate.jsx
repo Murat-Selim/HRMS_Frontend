@@ -14,6 +14,7 @@ export default function EmployeeUpdate({ employee }) {
       id:employee.id,
       email:employee.email,
       password:employee.password,
+      passwordRepeat: employee.passwordRepeat,
       firstName:employee.firstName,
       lastName:employee.lastName
     };
@@ -21,6 +22,7 @@ export default function EmployeeUpdate({ employee }) {
     const validationSchema = Yup.object({
       email:Yup.string().required("email boş bırakılamaz"),
       password:Yup.string().required("şifre boş bırakılamaz"),
+      passwordRepeat:Yup.string().required("şifre tekrarı boş bırakılamaz"),
       firstName:Yup.string().required("ad boş bırakılamaz"),
       lastName:Yup.string().required("soyad boş bırakılamaz")
     });
@@ -40,13 +42,14 @@ export default function EmployeeUpdate({ employee }) {
               validationSchema={validationSchema}
               enableReinitialize={true}
               onSubmit = {(values) => {
-                const {firstName, lastName, email, password} = values
+                const {firstName, lastName, email, password, passwordRepeat} = values
                 let data = {
                   id:employee.id,
                   firstName,
                   lastName,
                   email,
-                  password
+                  password,
+                  passwordRepeat
                 }
                 let employeeService = new EmployeeService();
                 employeeService.updateEmployee(data)
@@ -68,6 +71,9 @@ export default function EmployeeUpdate({ employee }) {
               </Form.Field> 
               <Form.Field>
                   <HrmsTextInput name="password" placeholder="Şifre"/>    
+              </Form.Field>
+              <Form.Field>
+                  <HrmsTextInput name="passwordRepeat" placeholder="Şifre Tekrarı"/>    
               </Form.Field>
              <Modal.Actions>
                 <Button content="Güncelle" type="submit" color="blue"/>

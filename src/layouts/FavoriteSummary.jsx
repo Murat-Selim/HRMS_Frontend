@@ -12,19 +12,16 @@ export default function FavoriteSummary() {
           <Menu.Item>
             <Dropdown pointing="top-left" item fluid text="Favoriler">
               <Dropdown.Menu>
-                {
-                  favorites.map((favorite)=>(
+                {favorites.map((favorite)=>(
                     <Dropdown.Item key={favorite.jobAdvert?.id}>
                       {favorite.jobAdvert?.jobPosition?.jobTitle}
                     </Dropdown.Item>
-
-                  ))
-                }
+                ))}           
                 <Dropdown.Divider/>
-                <Dropdown.Item as={NavLink} to="/favorites">Favorilere git</Dropdown.Item>
+                <Dropdown.Item as={NavLink} to="/favorites/29">Favorilere git</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            </Menu.Item>
+          </Menu.Item>
         </div>
     )
 }

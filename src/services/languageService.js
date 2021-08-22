@@ -11,7 +11,7 @@ export default class LanguageService{
     }
 
     update(language){
-        return axios.post("http://localhost:8080/api/languages/update", language)
+        return axios.put("http://localhost:8080/api/languages/update", language)
     }
 
     delete(id){

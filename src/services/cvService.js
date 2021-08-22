@@ -11,7 +11,7 @@ export default class CvService{
     }
 
     getByCandidateId(id){
-        return axios.get("http://localhost:8080/api/cv/findAllByCandidateId?id=" + id)
+        return axios.get("http://localhost:8080/api/cv/findByCandidateId?id=" + id)
     }
 
     addCv(cv){
@@ -22,7 +22,11 @@ export default class CvService{
         return axios.put("http://localhost:8080/api/cv/update", cv)
     }
 
-    saveImage(cvId,file){
-        return axios.put("http://localhost:8080/api/cv/addImage?cvId=" + cvId,file)
+    addImage(file, cvId){
+        return axios.post("http://localhost:8080/api/cv/addImage?cvId=" + cvId, file)
+    }
+
+    updateImage(file, cvId){
+        return axios.put("http://localhost:8080/api/cv/updateImage?cvId=" + cvId, file)
     }
 }

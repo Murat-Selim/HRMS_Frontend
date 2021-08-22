@@ -4,7 +4,7 @@ import { Dropdown, Image, Menu } from "semantic-ui-react";
 export default function SignedIn({ signOut }) {
   return (
     <div>
-      <Menu.Item>
+      <Menu.Item style={{marginTop: "7px"}}>
         <Image
           avatar
           spaces="right"

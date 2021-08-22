@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import EmployerService from '../services/employerService';
+import EmployerService from '../../services/employerService';
 import * as Yup from "yup";
-import HrmsTextInput from "../utilities/customFormControls/HrmsTextInput";
+import HrmsTextInput from "../../utilities/customFormControls/HrmsTextInput";
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
@@ -17,6 +17,7 @@ export default function EmployerUpdate({ employer }) {
       id:employer.id,
       email:employer.email,
       password:employer.password,
+      passwordRepeat: employer.passwordRepeat,
       companyName:employer.companyName,
       webAddress:employer.webAddress,
       phoneNumber:employer.phoneNumber,
@@ -26,6 +27,7 @@ export default function EmployerUpdate({ employer }) {
     const validationSchema = Yup.object({
       email:Yup.string().required("email boş bırakılamaz"),
       password:Yup.string().required("şifre boş bırakılamaz"),
+      passwordRepeat:Yup.string().required("şifre tekrarı boş bırakılamaz"),
       companyName:Yup.string().required("şirket ismi boş bırakılamaz"),
       webAddress:Yup.string().required("web adres boş bırakılamaz"),
       phoneNumber:Yup.string().required("Tel Numarası boş bırakılamaz")
@@ -46,11 +48,12 @@ export default function EmployerUpdate({ employer }) {
               validationSchema={validationSchema}
               enableReinitialize={true}
               onSubmit = {(values) => {
-                const {email, password, companyName, webAddress, phoneNumber, isActivated} = values
+                const {email, password, passwordRepeat, companyName, webAddress, phoneNumber, isActivated} = values
                 let data = {
                   id: employer.id,
                   email,
                   password,
+                  passwordRepeat,
                   companyName,
                   webAddress,
                   phoneNumber,
@@ -60,7 +63,7 @@ export default function EmployerUpdate({ employer }) {
                 employerService.updateEmployer(data)
                 .then((result) => result.data.data)
                 toast.success("Bilgiler personelin onayının ardından güncellenecektir.")
-                history.push("/employerWaitingConfirm")
+                history.push("/employerUpdateConfirm")
                 setOpen(false)
                 window.location.reload()
               }}
@@ -74,7 +77,7 @@ export default function EmployerUpdate({ employer }) {
                     <HrmsTextInput name="webAddress" placeholder="Web Site" />
                </Form.Field>
                <Form.Field>
-                    <HrmsTextInput type="number" name="phoneNumber" placeholder="Tel Numarası" />
+                    <HrmsTextInput name="phoneNumber" placeholder="Tel Numarası" />
                </Form.Field>
                <Form.Field>
                     <HrmsTextInput name="email" placeholder="Email" />
@@ -82,6 +85,9 @@ export default function EmployerUpdate({ employer }) {
                <Form.Field>
                     <HrmsTextInput name="password" placeholder="Şifre" />
                </Form.Field>
+               <Form.Field>
+                  <HrmsTextInput name="passwordRepeat" placeholder="Şifre Tekrarı"/>    
+              </Form.Field>
             <Modal.Actions>
               <Button content="Güncelle" type="submit" color="blue"/>
               <Button content="Vazgeç" color="red" onClick={() => setOpen(false)}/>
