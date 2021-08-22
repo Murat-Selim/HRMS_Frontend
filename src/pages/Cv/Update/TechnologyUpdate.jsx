@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import * as Yup from "yup";
 import TechnologyService from '../../../services/technologyService';
 import { toast } from 'react-toastify';
-import { Button, Form, Label, Modal } from 'semantic-ui-react';
+import { Button, Form, Modal } from 'semantic-ui-react';
 import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput';
 
 export default function TechnologyUpdate({cvId, technology}) {
@@ -12,8 +12,8 @@ export default function TechnologyUpdate({cvId, technology}) {
     
     const initialValues = {
         id: technology.id,
-        techName: technology.techName,
-        cvId: cvId
+        cvId: cvId,
+        techName: technology.techName
     };
 
     const validationSchema = Yup.object({
@@ -23,7 +23,7 @@ export default function TechnologyUpdate({cvId, technology}) {
     const handleOnSubmit = (values) => {
         let technologyModal = {
             id: technology.id,
-            cvId: cvId,
+            cvId: values.cvId,
             techName: values.techName
         }
         let technologyService = new TechnologyService()
@@ -47,12 +47,11 @@ export default function TechnologyUpdate({cvId, technology}) {
               initialValues={initialValues}
               validationSchema={validationSchema}
               enableReinitialize={true}
-              onSubmit = {() => handleOnSubmit()}
+              onSubmit = {(values) => handleOnSubmit(values)}
           >
           {(formikprops) => (
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
               <Form.Field>
-                  <Label basic>Teknoloji</Label>
                   <HrmsTextInput name="techName" placeholder="Teknoloji"/> 
               </Form.Field>
              <Modal.Actions>

@@ -3,7 +3,7 @@ import {Formik} from 'formik';
 import * as Yup from "yup";
 import EducationService from '../../../services/educationService';
 import GraduateService from '../../../services/graduateService';
-import { Form, Message, Modal, Button, Label} from "semantic-ui-react";
+import { Form, Message, Modal, Button } from "semantic-ui-react";
 import { toast } from 'react-toastify';
 import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput';
 
@@ -38,10 +38,8 @@ export default function EducationUpdate({cvId, education}) {
     const handleOnSubmit = (values) => {
         let educationModal = {
             id: education.id,
-            cvId: cvId,
-            graduate: {
-                id: values.graduateId
-            },
+            cvId: values.cvId,
+            graduateId: values.graduateId,
             schoolName: values.schoolName,
             department: values.department,
             startDate: values.startDate,
@@ -54,9 +52,9 @@ export default function EducationUpdate({cvId, education}) {
         window.location.reload(2000)
     }
   
-    const handleChangeSemantic = (prop, field, value) => {
-        prop.setFieldValue(field, value);
-    }
+    const handleChangeSemantic = (prop, value, fieldName) => {
+      prop.setFieldValue(fieldName, value);
+  }
 
     const graduateOptions = graduates.map((graduate, index) => ({
         key: index,
@@ -78,35 +76,36 @@ export default function EducationUpdate({cvId, education}) {
               initialValues={initialValues}
               validationSchema={validationSchema}
               enableReinitialize={true}
-              onSubmit = {() => handleOnSubmit()}
+              onSubmit = {(values) => handleOnSubmit(values)}
           >
           {(formikprops) => (
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
                    <Form.Field>
-                        <Label basic>Okul</Label>
                         <HrmsTextInput name="schoolName" placeholder="Okul"/> 
                    </Form.Field>
                 <Form.Group widths={2}>
                    <Form.Field>
-                        <Label basic>Okul Bölümü</Label>
                         <HrmsTextInput name="department" placeholder="Okul Bölümü"/> 
                    </Form.Field>
                    <Form.Field>
-                        <Label basic>Okul Derecesi</Label>
-                        <Form.Dropdown selection search value={formikprops.values.graduateId} placeholder="Okul Derecesi" options={graduateOptions} onChange={(event, data) => {
-                                handleChangeSemantic("graduateId", data.value)}} />
-                        {formikprops.errors.graduateId && formikprops.touched.graduateId ? (
-                            <Message color="red">{formikprops.errors.graduateId}</Message>
-                        ) : null}
+                       <Form.Dropdown 
+                              selection 
+                              search 
+                              placeholder="Okul Derecesi"
+                              value={formikprops.values.graduateId} 
+                              options={graduateOptions} 
+                              onChange={(event, data) => {
+                                handleChangeSemantic(formikprops, data.value, "graduateId")}} />
+                              {formikprops.errors.graduateId && formikprops.touched.graduateId ? (
+                                <Message color="red">{formikprops.errors.graduateId}</Message>
+                              ) : null}
                     </Form.Field>
                 </Form.Group>
                 <Form.Group widths={2}>
                     <Form.Field>
-                        <Label basic>Start Date</Label>
                         <HrmsTextInput type="date" name="startDate" placeholder="YYYY-AA-GG"/>  
                     </Form.Field>
                     <Form.Field>
-                        <Label basic>End Date</Label>
                         <HrmsTextInput type="date" name="endDate" placeholder="YYYY-AA-GG"/>   
                     </Form.Field>
                 </Form.Group>

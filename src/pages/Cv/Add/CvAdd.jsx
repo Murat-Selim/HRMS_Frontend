@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import * as Yup from "yup";
 import React, { useState } from 'react'
-import { Form, Modal, Button, Segment, Image, Menu, Icon } from "semantic-ui-react";
+import { Form, Modal, Button, Segment, Image, Icon, Header } from "semantic-ui-react";
 import CvService from "../../../services/cvService";
 import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput';
 import HrmsTextArea from '../../../utilities/customFormControls/HrmsTextArea';
@@ -13,11 +13,10 @@ import { toast } from 'react-toastify';
 
 export default function CvAdd() {
     
-    const [imageFile, setImageFile] = useState("")
-
     const [open, setOpen] = useState(false);
     
     const initialValues = {
+        id: "",
         candidateId: "",
         githubLink: "",
         linkedinLink: "",
@@ -38,9 +37,8 @@ export default function CvAdd() {
 
     const handleOnSubmit = (values) => {
         let cvModal = {
-            candidate: {
-                id: 29
-            },
+            id: values.id,
+            candidateId: values.candidateId,
             githubLink: values.githubLink,
             linkedinLink: values.linkedinLink,
             description: values.description,
@@ -50,11 +48,22 @@ export default function CvAdd() {
         }
         let cvService = new CvService()
         cvService.addCv(cvModal).then(result => result.data.data)
-        cvService.saveImage(imageFile, 1).then(result=>result.data.data)
         toast.success("Cv bilgisi eklendi")
         setOpen(false)
         window.location.reload(2000)
     }
+
+    const handleInputFile = (e) => {      
+      let data = new FormData();
+      data.append("file", e.target.files[0]);
+  
+      let cvService = new CvService()
+      cvService.addImage(data, 1)
+      .then(result => result.data.data); 
+      toast.success("Fotoğraf Eklendi!")
+      setOpen(false)
+      window.location.reload(2000)
+    };
   
   return (
     <div>
@@ -64,13 +73,13 @@ export default function CvAdd() {
         open={open}
         trigger={<Button content="Ekle" color="blue" icon="pencil"/>}
       >
-        <Modal.Header>Cv Ekle</Modal.Header>
+        <Modal.Header style={{textAlign: "center", color: "teal"}}>Cv Ekle</Modal.Header>
         <Modal.Content>
           <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
               enableReinitialize={true}
-              onSubmit = {() => handleOnSubmit()}
+              onSubmit = {(values) => handleOnSubmit(values)}
           >
           {(formikprops) => (
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
@@ -79,16 +88,14 @@ export default function CvAdd() {
                             style={{ width: "170px", height: "170px", objectFit: "cover" }}
                             fluid
                         />
-                        <Button fluid style={{ marginTop: "10px" }} icon="photo" >
-                            <input id="file" name="file" type="file" onChange={(event) => {
-                                setImageFile("file", event.currentTarget.files[0]);
-                            }} />
+                        <Button style={{ marginTop: "10px" }} icon="photo" >
+                            <input id="file" name="file" type="file" onChange={(e) => handleInputFile(e)}/>
                         </Button>
                     </Segment>
                 <Form.Group widths="2">
                    <Form.Field>
                         <Icon name="github" size="big" />
-                        <HrmsTextInput name="githubLink" placeholder="Github"/> 
+                        <HrmsTextInput name="githubLink" placeholder="Github"/>
                    </Form.Field>
                    <Form.Field>
                         <Icon name="linkedin" size="big" color="blue" />  
@@ -106,17 +113,41 @@ export default function CvAdd() {
                    <Form.Field>
                         <HrmsTextArea style={{ height: "100px" }} name="description" placeholder="Biyografi"/> 
                    </Form.Field>
-             <Modal.Actions>
-                <Button content="Ekle" type="submit" color="blue"/>
-                <Button content="Vazgeç" color="red" onClick={() => setOpen(false)}/>
-              </Modal.Actions>
-              
-              <Menu widths={4}>
-                    <Menu.Item><LanguageAdd /></Menu.Item>
-                    <Menu.Item><TechnologyAdd /></Menu.Item>
-                    <Menu.Item><EducationAdd /></Menu.Item>
-                    <Menu.Item><JobExperienceAdd /></Menu.Item>
-              </Menu>
+
+            <Segment>
+               <Modal.Actions>
+                  <Header style={{color: "teal"}} content="Dil Ekle"/>
+                  <LanguageAdd />
+                </Modal.Actions>
+            </Segment>
+
+            <Segment>
+                <Modal.Actions>
+                  <Header style={{color: "teal"}} content="Teknoloji Ekle"/>
+                  <TechnologyAdd />
+                </Modal.Actions>
+            </Segment>      
+
+            <Segment>       
+                <Modal.Actions>
+                  <Header style={{color: "teal"}} content="Eğitim Ekle"/>
+                  <EducationAdd />
+                </Modal.Actions>
+            </Segment>
+
+            <Segment>      
+                <Modal.Actions>
+                  <Header style={{color: "teal"}} content="İş Tecrübesi Ekle"/>
+                  <JobExperienceAdd />
+                </Modal.Actions>
+            </Segment>
+
+            <Segment>     
+                <Modal.Actions>
+                  <Button content="Kaydet" type="submit" color="blue"/>
+                  <Button content="Vazgeç" color="red" onClick={() => setOpen(false)}/>
+                </Modal.Actions>
+            </Segment> 
 
             </Form>
           )}

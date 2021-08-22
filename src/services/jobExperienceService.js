@@ -11,7 +11,7 @@ export default class JobExperienceService{
     }
 
     update(jobExperience){
-        return axios.post("http://localhost:8080/api/jobexperiences/update", jobExperience)
+        return axios.put("http://localhost:8080/api/jobExperiences/update", jobExperience)
     }
 
     delete(id){

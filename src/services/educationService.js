@@ -11,7 +11,7 @@ export default class EducationService{
     }
 
     update(education){
-        return axios.post("http://localhost:8080/api/educations/update", education)
+        return axios.put("http://localhost:8080/api/educations/update", education)
     }
 
     delete(id){

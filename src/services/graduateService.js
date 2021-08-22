@@ -11,7 +11,7 @@ export default class GraduateService{
     }
 
     update(graduate){
-        return axios.post("http://localhost:8080/api/graduates/update", graduate)
+        return axios.put("http://localhost:8080/api/graduates/update", graduate)
     }
 
     delete(id){

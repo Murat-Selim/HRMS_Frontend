@@ -20,7 +20,7 @@ export default function CvList() {
     <div>          
       <Card.Group>
         {cvs.map((cv) => (
-           <Card as={NavLink} to={"/candidateCv"} fluid color="blue" key={cv.id}>
+           <Card as={NavLink} to={`/candidateCv/${cv.candidateId}`} fluid color="blue" key={cv.id}>
              <Card.Content>
                <Card.Header
                   style={{

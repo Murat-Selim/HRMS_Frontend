@@ -11,7 +11,7 @@ export default class TechnologyService{
     }
 
     update(technology){
-        return axios.post("http://localhost:8080/api/technologies/update", technology)
+        return axios.put("http://localhost:8080/api/technologies/update", technology)
     }
 
     delete(id){

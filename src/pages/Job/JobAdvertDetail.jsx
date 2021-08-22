@@ -33,46 +33,46 @@ export default function JobAdvertDetail() {
          <div style={{textAlign:"left", color: "black"}}>
             <Card.Description>
               <div style={{ marginTop: "10px"}}>
-                <b>Şirket : </b> 
+                <strong>Şirket : </strong> 
                 <strong style={{color: "green"}}>{jobAdvert?.employer?.companyName}</strong>
               </div>
             </Card.Description>
             <Card.Description>
               <div style={{ marginTop: "10px"}}>
-                <b> İş Tanımı : </b> {jobAdvert.jobDescription}
+                <strong> İş Tanımı : </strong> {jobAdvert.jobDescription}
               </div>
             </Card.Description>
             <Card.Description>
               <div style={{ marginTop: "10px" }}>
-                <b> Açık Pozisyon : </b> {jobAdvert.numberOfOpenPosition}
+                <strong> Açık Pozisyon : </strong> {jobAdvert.numberOfOpenPosition}
               </div>
             </Card.Description>
             <Card.Description>
               <div style={{ marginTop: "10px" }}>
-                <b> Maaş Aralığı : </b> 
+                <strong> Maaş Aralığı : </strong> 
                   <ins>
-                    {jobAdvert.minSalary} - {jobAdvert.maxSalary}
+                    {jobAdvert.minSalary} TL - {jobAdvert.maxSalary} TL
                   </ins>
               </div>
             </Card.Description>
             <Card.Description>
               <div style={{ marginTop: "10px" }}>
-                <b>Şehir : </b> {jobAdvert?.city?.name} 
+                <strong>Şehir : </strong> {jobAdvert?.city?.name} 
               </div>
             </Card.Description>
             <Card.Description>
               <div style={{ marginTop: "10px" }}>
-                <b>İş Yeri : </b> {jobAdvert?.workPlace?.name} 
+                <strong>İş Yeri : </strong> {jobAdvert?.workPlace?.name} 
               </div>
             </Card.Description>
             <Card.Description>
               <div style={{ marginTop: "10px" }}>
-                <b>İş Zamanı : </b> {jobAdvert?.workTime?.name} 
+                <strong>İş Zamanı : </strong> {jobAdvert?.workTime?.name} 
               </div>
             </Card.Description>
             <Card.Description>
               <div style={{ marginTop: "10px" }}>
-                <b>Kapanış Tarihi : </b> {moment(jobAdvert.applicationDeadline)
+                <strong>Kapanış Tarihi : </strong> {moment(jobAdvert.applicationDeadline)
                           .endOf("day")
                           .fromNow()}
               </div>

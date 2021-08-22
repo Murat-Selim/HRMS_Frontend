@@ -19,7 +19,7 @@ export default function FavoriteJobAdvertList() {
 
   useEffect(() => {
     let favoriteService = new FavoriteService();
-    favoriteService.getAll(pageNo, pageSize).then((result) => {
+    favoriteService.getByCandidateId(29, pageNo, pageSize).then((result) => {
       setFavorites(result.data.data.content)
       setTotalPage(result.data.data.totalPages)
     });
@@ -63,11 +63,11 @@ export default function FavoriteJobAdvertList() {
               </Card.Description>
               <Card.Description>
                 <div style={{ marginTop: "10px"}}>
-                  {favorite.jobAdvert?.city.name}
+                  {favorite.jobAdvert?.city?.name}
                 </div>
               </Card.Description>
               <Card.Description style={{marginTop: "10px"}}>
-                  {favorite.jobAdvert?.workTime.name} 
+                  {favorite.jobAdvert?.workTime?.name} 
                 <Card.Group style={{float: "right", marginTop: "0px"}}>
                     {moment(favorite.jobAdvert.createdDate)
                             .startOf("day")

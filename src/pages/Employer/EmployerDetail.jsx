@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { Button, Card, Header, Icon, Pagination, Select } from "semantic-ui-react";
-import EmployerService from "../services/employerService";
-import JobAdvertService from "../services/jobAdvertService";
+import { Button, Card, Icon, Pagination, Select } from "semantic-ui-react";
+import EmployerService from "../../services/employerService";
+import JobAdvertService from "../../services/jobAdvertService";
 import moment from "moment";
 import "moment/locale/tr";
 
@@ -67,14 +67,14 @@ export default function EmployerDetail() {
                 <div style={{marginTop: "10px"}}>  
                   <Icon name="world"/>             
                   <strong>
-                  <a>{employer.webAddress}</a>
+                     <a href="/#" target="_blank">{employer.webAddress}</a>
                   </strong>
                 </div>
               </Card.Description>
               <Card.Description>
                 <div style={{ marginTop: "10px" }}>
                   <Icon name="mail"/>                                
-                  <strong><a>{employer.email}</a></strong>
+                  <strong><a href="/#">{employer.email}</a></strong>
                 </div>
               </Card.Description>
               <Card.Description>

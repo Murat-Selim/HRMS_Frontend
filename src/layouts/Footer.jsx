@@ -9,9 +9,9 @@ export default function Footer() {
         <Grid.Row>
           <Grid.Column width={4}>
             <Segment textAlign="center" vertical inverted color="black">
-              <p>Hakkımızda</p>
-              <p>İletişim</p>
-              <p>Gizlilik Politikası</p>
+              <p><a style={{color: "white"}} href="/#">Hakkımızda</a></p>
+              <p><a style={{color: "white"}} href="/#">İletişim</a></p>
+              <p><a style={{color: "white"}} href="/#">Gizlilik Politikası</a></p>
             </Segment>
           </Grid.Column>
           <Grid.Column width={12}>

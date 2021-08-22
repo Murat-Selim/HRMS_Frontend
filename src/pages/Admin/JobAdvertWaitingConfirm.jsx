@@ -41,8 +41,8 @@ export default function JobAdvertWaitingConfirm() {
       changeActive.updateChangeActive(id)
       const removeList = jobAdverts.filter((jobAdvert)=>jobAdvert.id !== id);
       setJobAdverts(removeList);
-      toast.success("İş ilanı onaylandı!")
-      window.location.reload()
+      toast.success("İş İlanı Onaylandı!")
+      window.location.reload(2000)
   }
  
   return (
@@ -55,7 +55,7 @@ export default function JobAdvertWaitingConfirm() {
             <Table.HeaderCell>Açık Pozisyon</Table.HeaderCell>
             <Table.HeaderCell>Oluşturma Tarihi</Table.HeaderCell>
             <Table.HeaderCell>Kapanış Tarihi</Table.HeaderCell>
-            <Table.HeaderCell>Onay Durumu</Table.HeaderCell>
+            <Table.HeaderCell>Onay Bekleyen</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -68,7 +68,7 @@ export default function JobAdvertWaitingConfirm() {
               <Table.Cell>{jobAdvert.createdDate}</Table.Cell>
               <Table.Cell>{jobAdvert.applicationDeadline}</Table.Cell>
               <Table.Cell>
-                <Button color="red" onClick={() => handleIsActive(jobAdvert.id)}>Onay Bekleyen</Button>
+                <Button color="green" onClick={() => handleIsActive(jobAdvert.id)}>Onayla</Button>
               </Table.Cell>
             </Table.Row>
           ))}
