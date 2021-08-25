@@ -15,11 +15,10 @@ export default function EmployerUpdateConfirm() {
 
   function updateConfirm(id) {
     let employerService = new EmployerService();
-    employerService.updateConfirm(id).then((result) => result.data.data)
-      const removeList = employers.filter((employer) => employer.id !== id);
-      setEmployers(removeList);
-      toast.success("İş Veren Güncellemesi Onaylandı");
-      window.location.reload(2000);
+    employerService.updateConfirm(id).then((result) => result.data.data);
+    const removeList = employers.filter((employer) => employer.id !== id);
+    setEmployers(removeList);
+    toast.success("İş Veren Güncellemesi Onaylandı!");
   }
 
   return (

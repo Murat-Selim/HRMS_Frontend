@@ -99,8 +99,8 @@ export default function JobAdvertAdd() {
       .addJobAdvert(values)
       .then((result) => {
       console.log(result.data.message);
-      toast.success("İş ilanı başarıyla eklendi, Personelin onayının ardından yayınlanacaktır.");
       history.push("/jobAdvertWaitingConfirm");
+      toast.success("İş ilanı başarıyla eklendi, Personelin onayının ardından yayınlanacaktır.");    
       })
   };
 

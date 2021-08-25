@@ -42,7 +42,6 @@ export default function EmployerWaitingConfirm() {
     const removeList = employers.filter((employer) => employer.id !== id);
     setEmployers(removeList);
     toast.success("İş Veren Onaylandı!")
-    window.location.reload(2000)
   }
 
   return (

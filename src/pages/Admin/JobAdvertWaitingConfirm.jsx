@@ -39,10 +39,9 @@ export default function JobAdvertWaitingConfirm() {
   const handleIsActive = (id) => {
       let changeActive = new JobAdvertService();
       changeActive.updateChangeActive(id)
-      const removeList = jobAdverts.filter((jobAdvert)=>jobAdvert.id !== id);
+      const removeList = jobAdverts.filter((jobAdvert) => jobAdvert.id !== id);
       setJobAdverts(removeList);
       toast.success("İş İlanı Onaylandı!")
-      window.location.reload(2000)
   }
  
   return (
@@ -85,7 +84,7 @@ export default function JobAdvertWaitingConfirm() {
       <Select
          style={{ marginLeft: "2em" }}
          options={pageSizeOptions}
-         onChange={(e, value) => handleSizeChange(value)}
+         onChange={(value) => handleSizeChange(value)}
          placeholder="10"
          compact
       />

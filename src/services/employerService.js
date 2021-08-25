@@ -39,6 +39,6 @@ export default class EmployerService{
     }
 
     updateConfirm(id){
-        return axios.post("http://localhost:8080/api/employers/updateconfirm?userId="+id);
+        return axios.put("http://localhost:8080/api/employers/updateConfirm?userId=" + id);
     }
 }

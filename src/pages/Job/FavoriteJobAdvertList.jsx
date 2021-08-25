@@ -95,7 +95,7 @@ export default function FavoriteJobAdvertList() {
       <Select
          style={{ marginLeft: "2em" }}
          options={pageSizeOptions}
-         onChange={(e, value) => handleSizeChange(value)}
+         onChange={(value) => handleSizeChange(value)}
          placeholder="10"
          compact
       />

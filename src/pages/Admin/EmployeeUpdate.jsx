@@ -27,6 +27,22 @@ export default function EmployeeUpdate({ employee }) {
       lastName:Yup.string().required("soyad boş bırakılamaz")
     });
 
+    const handleOnSubmit = (values) => {
+      const {firstName, lastName, email, password, passwordRepeat} = values
+      let data = {
+        id:employee.id,
+        firstName,
+        lastName,
+        email,
+        password,
+        passwordRepeat
+      }
+      let employeeService = new EmployeeService();
+      employeeService.updateEmployee(data)
+      toast.success("Bilgiler güncellendi!");
+      setOpen(false)
+      window.location.reload(2000)
+    }
   return (
     <div>
       <Modal
@@ -41,22 +57,7 @@ export default function EmployeeUpdate({ employee }) {
               initialValues={initialValues}
               validationSchema={validationSchema}
               enableReinitialize={true}
-              onSubmit = {(values) => {
-                const {firstName, lastName, email, password, passwordRepeat} = values
-                let data = {
-                  id:employee.id,
-                  firstName,
-                  lastName,
-                  email,
-                  password,
-                  passwordRepeat
-                }
-                let employeeService = new EmployeeService();
-                employeeService.updateEmployee(data)
-                toast.success("Bilgiler güncellendi!");
-                setOpen(false)
-                window.location.reload(2000)
-              }}
+              onSubmit = {(values) => handleOnSubmit(values)}
           >
           {(formikprops) => (
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
