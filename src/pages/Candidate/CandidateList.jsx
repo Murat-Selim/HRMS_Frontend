@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Pagination, Select, Table } from "semantic-ui-react";
-import CandidateService from "../services/candidateService";
+import CandidateService from "../../services/candidateService";
 
 export default function CandidateList() {
 

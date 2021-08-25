@@ -1,7 +1,7 @@
 import React from "react";
 import JobAdvertList from '../pages/Job/JobAdvertList'
 import { Route } from 'react-router-dom'
-import CandidateList from "../pages/CandidateList";
+import CandidateList from "../pages/Candidate/CandidateList";
 import EmployerList from '../pages/Employer/EmployerList';
 import Cv from "../pages/Cv/Cv";
 import CvDetail from "../pages/Cv/CvDetail";
@@ -12,7 +12,7 @@ import FavoriteJobAdvertList from "../pages/Job/FavoriteJobAdvertList";
 import JobAdvertWaitingConfirm from "../pages/Admin/JobAdvertWaitingConfirm";
 import EmployerWaitingConfirm from "../pages/Admin/EmployerWaitingConfirm";
 import EmployerDetail from "../pages/Employer/EmployerDetail";
-import EmployerUpdateConfirm from "../pages/Employer/EmployerUpdateConfirm";
+import EmployerUpdateConfirm from "../pages/Admin/EmployerUpdateConfirm";
 import Admin from "../pages/Admin/Admin";
 
 export default function Dashboard() {

@@ -11,7 +11,7 @@ export default function Admin() {
             <Menu widths="3">
                 <Menu.Item><Button as={NavLink} to="/employerWaitingConfirm" color="green" content="Employer Confirm" /></Menu.Item>
                 <Menu.Item><Button as={NavLink} to="/employerUpdateConfirm" color="green" content="Employer Update Confirm" /></Menu.Item>
-                <Menu.Item><Button as={NavLink} to="/jobAdvertWaitingConfirm" color="green" content="JobAdvert Confirm" /></Menu.Item>
+                <Menu.Item><Button as={NavLink} to="/jobAdvertWaitingConfirm" color="green" content="Job Advert Confirm" /></Menu.Item>
             </Menu>
         </div>
     )

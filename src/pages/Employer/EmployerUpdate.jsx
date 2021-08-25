@@ -5,11 +5,11 @@ import HrmsTextInput from "../../utilities/customFormControls/HrmsTextInput";
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 
 export default function EmployerUpdate({ employer }) {
     
-    const history = useHistory();
+    //const history = useHistory();
 
     const [open, setOpen] = useState(false);
 
@@ -21,7 +21,7 @@ export default function EmployerUpdate({ employer }) {
       companyName:employer.companyName,
       webAddress:employer.webAddress,
       phoneNumber:employer.phoneNumber,
-      isActivated: false
+      isActivated: true
     };
 
     const validationSchema = Yup.object({
@@ -32,6 +32,26 @@ export default function EmployerUpdate({ employer }) {
       webAddress:Yup.string().required("web adres boş bırakılamaz"),
       phoneNumber:Yup.string().required("Tel Numarası boş bırakılamaz")
     });
+
+    const handleOnSubmit = (values) => {
+      const {email, password, passwordRepeat, companyName, webAddress, phoneNumber, isActivated} = values
+                let data = {
+                  id: employer.id,
+                  email,
+                  password,
+                  passwordRepeat,
+                  companyName,
+                  webAddress,
+                  phoneNumber,
+                  isActivated
+                }
+                let employerService = new EmployerService();
+                employerService.updateEmployer(data)
+                .then((result) => result.data.data)   
+                //history.push("/employerUpdateConfirm")             
+                toast.success("Bilgiler personelin onayının ardından güncellenecektir.")
+                setOpen(false)  
+    }
 
   return (
     <div>
@@ -47,26 +67,7 @@ export default function EmployerUpdate({ employer }) {
               initialValues={initialValues}
               validationSchema={validationSchema}
               enableReinitialize={true}
-              onSubmit = {(values) => {
-                const {email, password, passwordRepeat, companyName, webAddress, phoneNumber, isActivated} = values
-                let data = {
-                  id: employer.id,
-                  email,
-                  password,
-                  passwordRepeat,
-                  companyName,
-                  webAddress,
-                  phoneNumber,
-                  isActivated
-                }
-                let employerService = new EmployerService();
-                employerService.updateEmployer(data)
-                .then((result) => result.data.data)
-                toast.success("Bilgiler personelin onayının ardından güncellenecektir.")
-                history.push("/employerUpdateConfirm")
-                setOpen(false)
-                window.location.reload()
-              }}
+              onSubmit = {(values) => handleOnSubmit(values)}
           >
           {(formikprops) => (
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
