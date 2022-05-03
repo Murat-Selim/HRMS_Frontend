@@ -3,8 +3,8 @@ import Dashboard from './layouts/Dashboard';
 import 'semantic-ui-css/semantic.min.css';
 import Navi from './layouts/Navbar/Navi.jsx';
 import { Container } from 'semantic-ui-react';
-import Footer from './layouts/Footer.jsx';
 import { ToastContainer } from 'react-toastify';
+import Footer from './layouts/Footer';
 
 function App() {
   return (

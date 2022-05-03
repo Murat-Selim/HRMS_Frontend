@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Button, Card, Feed, Grid, Pagination, Rating, Select} from "semantic-ui-react";
 import JobAdvertService from "../../services/jobAdvertService";
 import { addToFavorite, removeFromFavorite} from "../../store/actions/favoriteActions";
@@ -11,6 +10,7 @@ import "moment/locale/tr";
 import JobAdvertFilter from "../../layouts/JobAdvertFilter";
 
 export default function JobAdvertList() {
+  
   moment.locale("tr");
 
   const dispatch = useDispatch();
@@ -54,10 +54,6 @@ export default function JobAdvertList() {
     setPageNo(pageNo);
   };
 
-  const handleSizeChange = (value) => {
-    setPageSize(value);
-  };
-
   const handleAddToFavorite = (candidateId, jobAdvertId) => {
     let favoriteJobAdvert = {
       candidate: {
@@ -76,7 +72,6 @@ export default function JobAdvertList() {
     let favoriteService = new FavoriteService();
     favoriteService.delete(candidateId, jobAdvertId);
     dispatch(removeFromFavorite(jobAdvertId));
-    toast.success("Favorilerden kaldırma işlemi başarılı!");
   };
 
   function handleCheckToFavorite(jobAdvertId) {
@@ -177,20 +172,21 @@ export default function JobAdvertList() {
                 </Card>
               ))}
             </Card.Group>
+
             <br />
+
             <Pagination
-            defaultActivePage={pageNo}
-            onPageChange={(e, data) => handlePaginationChange(data.activePage)}
-            totalPages={totalPage}
-            pageSize={pageSize}
-            siblingRange={1}
+              defaultActivePage={pageNo}
+              onPageChange={(e, data) => handlePaginationChange(data.activePage)}
+              totalPages={totalPage}
+              siblingRange={1}
             />
             <Select
-            style={{ marginLeft: "2em" }}
-            options={pageSizeOptions}
-            onChange={(value) => handleSizeChange(value)}
-            placeholder="10"
-            compact
+              style={{ marginLeft: "2em" }}
+              options={pageSizeOptions}
+              onChange={(e, { value }) => setPageSize({ value }.value)}
+              placeholder="10"
+              compact
             />
            </Grid.Column>
         </Grid.Row>

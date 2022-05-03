@@ -9,6 +9,7 @@ export default function LanguageDelete({language}) {
         let languageService = new LanguageService()
         languageService.delete(language.id).then(result => result.data.data)
         toast.error(`${language.languageName} silindi`)
+        window.location.reload(2000)
     }
 
     return (

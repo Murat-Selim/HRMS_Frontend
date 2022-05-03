@@ -9,6 +9,7 @@ export default function JobExperienceDelete({jobExperience}) {
         let jobExperienceService = new JobExperienceService()
         jobExperienceService.delete(jobExperience.id).then(result => result.data.data)
         toast.error("İş Tecrübesi silindi")
+        window.location.reload(2000)
     }
 
     return (

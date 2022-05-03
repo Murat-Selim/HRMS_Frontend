@@ -31,7 +31,7 @@ export default function LanguageUpdate({cvId, language}) {
         }
         let languageService = new LanguageService()
         languageService.update(languageModal).then(result => result.data.data)
-        toast.success("Teknoloji bilgisi güncellendi")
+        toast.success("Dil bilgisi güncellendi")
         setOpen(false)
         window.location.reload(2000)
     }

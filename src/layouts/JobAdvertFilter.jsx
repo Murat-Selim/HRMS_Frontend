@@ -186,8 +186,8 @@ export default function JobAdvertFilter() {
 
               <Divider />
 
-              <Button type="submit" basic color="blue" onClick={formik.handleSubmit}>İŞ ARA</Button>
-              <Button basic color="blue" onClick={handleRemoveFilters}>Filtreyi Kaldır</Button>
+              <Button circular basic color="blue" onClick={formik.handleSubmit} type="submit">İŞ ARA</Button>
+              <Button circular basic color="blue" onClick={handleRemoveFilters}>Filtreyi Kaldır</Button>
           </Form>
         </Card.Content>
       </Card>

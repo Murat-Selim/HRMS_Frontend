@@ -1,6 +1,6 @@
 import React from "react";
 import JobAdvertList from '../pages/Job/JobAdvertList'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import CandidateList from "../pages/Candidate/CandidateList";
 import EmployerList from '../pages/Employer/EmployerList';
 import Cv from "../pages/Cv/Cv";
@@ -18,6 +18,7 @@ import Admin from "../pages/Admin/Admin";
 export default function Dashboard() {
   return (
     <div>
+      <Switch>
           <Route exact path="/" component={JobAdvertList}/>
           <Route exact path="/candidateList" component={CandidateList}/>
           <Route exact path="/employerList" component={EmployerList}/>
@@ -34,6 +35,7 @@ export default function Dashboard() {
           <Route exact path="/cv/:id" component={CvDetail}/>
           <Route exact path="/candidateCv/:id" component={CvDetail}/>
           <Route exact path="/favorites/:candidateId" component={FavoriteJobAdvertList} />
+      </Switch>
    </div>
   );
 }

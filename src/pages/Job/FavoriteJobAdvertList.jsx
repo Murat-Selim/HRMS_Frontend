@@ -4,6 +4,7 @@ import { Button, Card, Pagination, Select } from "semantic-ui-react";
 import FavoriteService from "../../services/favoriteService";
 import moment from "moment";
 import "moment/locale/tr";
+import { NavLink } from "react-router-dom";
 
 export default function FavoriteJobAdvertList() {
   
@@ -15,7 +16,7 @@ export default function FavoriteJobAdvertList() {
 
   const [pageSize, setPageSize] = useState(10);
 
-  const [favorites, setFavorites] = useState([])
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     let favoriteService = new FavoriteService();
@@ -78,6 +79,13 @@ export default function FavoriteJobAdvertList() {
            </Card.Content>
           <Card.Content extra>
             <div className="ui two buttons">
+              <Button
+                content="İş İlanına Git"
+                as={NavLink}
+                to={`/jobAdverts/${favorite.jobAdvert.id}`}
+                basic
+                color="green"
+              />
               <Button content="Başvur" basic color="red" />
             </div>
           </Card.Content>

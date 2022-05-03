@@ -31,17 +31,15 @@ export default function CvDetail() {
 
     return (
         <div>
-        <Segment color="blue">
-            <Segment>
+        <Segment>
+            <Segment inverted color="green">
                <Header textAlign="center">Özgeçmiş Bilgileri</Header>
             </Segment>
             {cvList.map((cv) => (    
                 <Grid textAlign="left">
                     <Grid.Row>
                         <Grid.Column width={4}>
-                            <Segment>
-                                <Image centered src={cv.image} style={{ width: "255px", height: "255px", objectFit: "cover" }} />
-                            </Segment>
+                                <Image circular centered src={cv.image} style={{ width: "255px", height: "255px", objectFit: "cover" }} />
                         </Grid.Column>
                         <Grid.Column width={12}>
                             <Segment textAlign="left">
@@ -71,7 +69,7 @@ export default function CvDetail() {
                                                <Item.Content><Label color="blue">{technology.techName}</Label></Item.Content>
                                                <TechnologyUpdate cvId={cv.id} technology={technology} />
                                                <TechnologyDelete technology={technology} />
-                                            </Item>
+                                           </Item>
                                         </Item.Group>
                                     </Segment>
                                 ))}
@@ -86,12 +84,12 @@ export default function CvDetail() {
                                     <Segment>
                                         <Item.Group key={language.id}>
                                            <Item>
-                                               <Item.Content>
+                                               <Item.Content>                                                   
                                                     <Label size="large">
-                                                    {language.languageName}<br/><br/>
-                                                    <Rating disabled defaultRating={language.level} maxRating={5} />
+                                                       {language.languageName}<br/><br/>
+                                                       <Rating disabled defaultRating={language.level} maxRating={5} />
                                                     </Label>
-                                                </Item.Content>
+                                               </Item.Content>
                                                 <LanguageUpdate cvId={cv.id} language={language} />
                                                 <LanguageDelete language={language} />                                              
                                             </Item>
@@ -114,10 +112,10 @@ export default function CvDetail() {
                                                     <Item.Content>
                                                         <Item.Header>{jobExperience.companyName}</Item.Header>
                                                         <Divider />
-                                                        <Item.Meta style={{color: "black"}}>{jobExperience.jobPosition?.jobTitle}</Item.Meta>
+                                                        <Item.Description style={{color: "black"}}>{jobExperience.jobPosition?.jobTitle}</Item.Description>
                                                         <Item.Description>İşe başladığı tarih: {moment(jobExperience.startDate).startOf("day").fromNow()} </Item.Description>
                                                         {jobExperience.exitDate == null ? <Item.Description>Devam ediyor</Item.Description> : 
-                                                        <Item.Description>İş çıkış tarihi: {moment(jobExperience.exitDate).endOf("day").fromNow()}</Item.Description>}
+                                                        <Item.Description>İşten çıkış tarihi: {moment(jobExperience.exitDate).endOf("day").fromNow()}</Item.Description>}
                                                     </Item.Content>
                                                     <JobExperienceUpdate cvId={cv.id} jobExperience={jobExperience} />
                                                     <JobExperienceDelete jobExperience={jobExperience} />

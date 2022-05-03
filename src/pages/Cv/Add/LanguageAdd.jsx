@@ -31,7 +31,7 @@ export default function LanguageAdd({cvId}) {
         }
         let languageService = new LanguageService()
         languageService.add(languageModal).then(result => result.data.data)
-        toast.success("Teknoloji bilgisi eklendi")
+        toast.success("Dil bilgisi eklendi")
         setOpen(false)
         window.location.reload(2000)
     }
@@ -55,7 +55,7 @@ export default function LanguageAdd({cvId}) {
           {(formikprops) => (
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
               <Form.Field>
-                  <HrmsTextInput name="language" placeholder="Dil"/> 
+                  <HrmsTextInput name="languageName" placeholder="Dil"/> 
               </Form.Field>
               <Form.Field>
                   <HrmsTextInput name="level" placeholder="Derece"/> 

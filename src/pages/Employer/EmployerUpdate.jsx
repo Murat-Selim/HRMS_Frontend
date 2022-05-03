@@ -61,6 +61,7 @@ export default function EmployerUpdate({ employer }) {
         open={open}
         trigger={<Button content="Güncelle" color="green"/>}
       >
+ 
         <Modal.Header>Bilgilerini Güncelle</Modal.Header>
         <Modal.Content>
           <Formik
@@ -69,7 +70,8 @@ export default function EmployerUpdate({ employer }) {
               enableReinitialize={true}
               onSubmit = {(values) => handleOnSubmit(values)}
           >
-          {(formikprops) => (
+
+          {(formikprops) => ( 
             <Form onSubmit={formikprops.handleSubmit} className="ui form">
                <Form.Field>
                     <HrmsTextInput name="companyName" placeholder="Şirket ismi" />
@@ -94,7 +96,7 @@ export default function EmployerUpdate({ employer }) {
               <Button content="Vazgeç" color="red" onClick={() => setOpen(false)}/>
             </Modal.Actions>
           </Form>
-          )}
+          )} 
           </Formik>
         </Modal.Content>
       </Modal>

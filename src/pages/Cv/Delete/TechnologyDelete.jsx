@@ -9,6 +9,7 @@ export default function TechnologyDelete({technology}) {
         let technologyService = new TechnologyService()
         technologyService.delete(technology.id).then(result => result.data.data)
         toast.error(`${technology.techName} silindi`)
+        window.location.reload(2000)
     }
 
     return (

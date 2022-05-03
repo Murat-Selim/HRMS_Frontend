@@ -9,6 +9,7 @@ export default function EducationDelete({education}) {
         let educationService = new EducationService()
         educationService.delete(education.id).then(result=>result.data.data)
         toast.error("Okul bilgisi silindi")
+        window.location.reload(2000)
     }
 
     return (

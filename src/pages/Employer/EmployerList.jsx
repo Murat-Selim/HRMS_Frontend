@@ -58,7 +58,7 @@ export default function EmployerList() {
                 <Button color="blue" content="WebSite" />
               </Table.Cell>
               <Table.Cell>
-                <EmployerUpdate employer={employer} />
+                  <EmployerUpdate employer={employer} />
               </Table.Cell>
               <Table.Cell>
                 <Button basic color="blue" content="Detaylar" as={NavLink} to={`/employer/${employer.id}`} />
